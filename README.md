@@ -19,3 +19,5 @@ git remote set-url --add --push origin https://gitlab.diinf.usach.cl/natalia.guz
 - Do `git hf init` in the project folder
 - To start a new feature do `git hf feature start <feature_name>`
 - To finish a feature do `git hf feature finish <feature_name>`
+
+## Testing feature
