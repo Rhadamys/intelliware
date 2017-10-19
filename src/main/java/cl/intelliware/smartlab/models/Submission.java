@@ -3,6 +3,7 @@ package cl.intelliware.smartlab.models;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
+import java.util.Set;
 
 @Entity
 @Table(name="Submissions")
@@ -24,6 +25,18 @@ public class Submission {
 
     @NotNull
     private int succededTest;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "assignment_id")
+    private Assignment assignment;
+
+    public Assignment getAssignment() {
+        return assignment;
+    }
+
+    public void setAssignment(Assignment assignment) {
+        this.assignment = assignment;
+    }
 
     @NotNull
     private boolean compilationError;

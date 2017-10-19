@@ -3,6 +3,7 @@ package cl.intelliware.smartlab.models;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
+import java.util.Set;
 
 @Entity
 @Table(name="Assignments")
@@ -20,6 +21,45 @@ public class Assignment {
 
     @NotNull
     private Float grade;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "problem_id")
+    private Problem problem;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "student_id")
+    private Student student;
+
+    @OneToMany(
+            mappedBy = "assignment",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    private Set<Submission> submissions;
+
+    public Set<Submission> getSubmissions() {
+        return submissions;
+    }
+
+    public void setSubmissions(Set<Submission> submissions) {
+        this.submissions = submissions;
+    }
+
+    public Student getStudent() {
+        return student;
+    }
+
+    public void setStudent(Student student) {
+        this.student = student;
+    }
+
+    public Problem getProblem() {
+        return problem;
+    }
+
+    public void setProblem(Problem problem) {
+        this.problem = problem;
+    }
 
     public long getAssignment_id() {
         return assignment_id;

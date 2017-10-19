@@ -21,6 +21,18 @@ public class TestCase {
     @NotNull
     private String description;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "problem_id")
+    private Problem problem;
+
+    public Problem getProblem() {
+        return problem;
+    }
+
+    public void setProblem(Problem problem) {
+        this.problem = problem;
+    }
+
     public long getTestCase_id() {
         return testCase_id;
     }
