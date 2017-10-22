@@ -4,8 +4,8 @@
 - Clone repo or use `git init` followed by `git remote add origin https://gitlab.diinf.usach.cl/natalia.guzman.s/Intelliware.git`
 - Then, copy and execute following commands in a terminal:
 ```
-git remote set-url --add --push origin https://gitlab.diinf.usach.cl/natalia.guzman.s/Intelliware.git
 git remote set-url --add --push origin https://github.com/Rhadamys/intelliware.git
+git remote set-url --add --push origin https://gitlab.diinf.usach.cl/natalia.guzman.s/Intelliware.git
 ```
 
 ## 2. How to setup the project
