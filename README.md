@@ -27,5 +27,3 @@ git remote set-url --add --push origin https://github.com/Rhadamys/intelliware.g
 ## 4. How to run
 - Run server
     - `gradle bootRun`
-
-## Testing feature
