@@ -105,4 +105,15 @@ public class User {
     public void setRut(String rut) {
         this.rut = rut;
     }
+
+    public boolean rutCheck() {
+        return rut.matches("[1-9]{1,2}.[0-9]{3}.[0-9]{3}-[0-9kK]{1}");
+    }
+
+    public boolean mailCheck(){
+        return mail.matches("[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:.[a-zA-Z0-9-]+)*$");
+    }
+
 }
+
+
