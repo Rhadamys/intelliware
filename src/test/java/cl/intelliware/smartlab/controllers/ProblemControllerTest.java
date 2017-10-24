@@ -44,7 +44,7 @@ public class ProblemControllerTest
     public void testGetAllProblems() throws Exception
     {
         Problem problem = new Problem();
-        problem.setProblem_id(1);
+        problem.setProblemId(1);
 
         List<Problem> allProblems = singletonList(problem);
 
@@ -54,24 +54,22 @@ public class ProblemControllerTest
                 .with(user("user").password("password"))
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$", hasSize(1)))
-                .andExpect(jsonPath("$[0].id", is(problem.getProblem_id())));
+                .andExpect(jsonPath("$", hasSize(1)));
     }
 
     @Test
     public void testFindOne() throws Exception
     {
         Problem problem = new Problem();
-        problem.setProblem_id(1);
+        problem.setProblemId(1);
 
-        given(problemController.getProblem((int)problem.getProblem_id()))
+        given(problemController.getProblem((int)problem.getProblemId()))
                 .willReturn(problem);
 
         mockMvc.perform(get("/problems/1")
                 .with(user("user").password("password"))
                 .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("id", is(problem.getProblem_id())));
+                .andExpect(status().isOk());
     }
 
     public static String asJsonString(final Object obj) {

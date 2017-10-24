@@ -11,7 +11,7 @@ public class Assignment {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "assignment_id")
-    private long assignment_id;
+    private long assignmentId;
 
     @NotNull
     private Date assignedAt;
@@ -61,12 +61,12 @@ public class Assignment {
         this.problem = problem;
     }
 
-    public long getAssignment_id() {
-        return assignment_id;
+    public long getAssignmentId() {
+        return assignmentId;
     }
 
-    public void setAssignment_id(long assignment_id) {
-        this.assignment_id = assignment_id;
+    public void setAssignmentId(long assignment_id) {
+        this.assignmentId = assignment_id;
     }
 
     public Date getAssignedAt() {

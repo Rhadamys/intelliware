@@ -44,7 +44,7 @@ public class StudentControllerTest
     public void testGetAllStudents() throws Exception
     {
         Student student = new Student();
-        student.setStudent_id(1);
+        student.setStudentId(1);
 
         List<Student> allStudents = singletonList(student);
 
@@ -54,24 +54,22 @@ public class StudentControllerTest
                 .with(user("user").password("password"))
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$", hasSize(1)))
-                .andExpect(jsonPath("$[0].id", is(student.getStudent_id())));
+                .andExpect(jsonPath("$", hasSize(1)));
     }
 
     @Test
     public void testFindOne() throws Exception
     {
         Student student = new Student();
-        student.setStudent_id(1);
+        student.setStudentId(1);
 
-        given(studentController.getStudent((int)student.getStudent_id()))
+        given(studentController.getStudent((int)student.getStudentId()))
                 .willReturn(student);
 
         mockMvc.perform(get("/students/1")
                 .with(user("user").password("password"))
                 .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("id", is(student.getStudent_id())));
+                .andExpect(status().isOk());
     }
 
     public static String asJsonString(final Object obj) {

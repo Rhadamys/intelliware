@@ -12,7 +12,7 @@ public class Submission {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "submission_id")
-    private long submission_id;
+    private long submissionId;
 
     @NotNull
     private String code;
@@ -41,12 +41,12 @@ public class Submission {
     @NotNull
     private boolean compilationError;
 
-    public long getSubmission_id() {
-        return submission_id;
+    public long getSubmissionId() {
+        return submissionId;
     }
 
-    public void setSubmission_id(long submission_id) {
-        this.submission_id = submission_id;
+    public void setSubmissionId(long submission_id) {
+        this.submissionId = submission_id;
     }
 
     public String getCode() {

@@ -44,7 +44,7 @@ public class RoleControllerTest
     public void testGetAllRoles() throws Exception
     {
         Role role = new Role();
-        role.setRole_id(1);
+        role.setRoleId(1);
 
         List<Role> allRoles = singletonList(role);
 
@@ -54,24 +54,22 @@ public class RoleControllerTest
                 .with(user("user").password("password"))
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$", hasSize(1)))
-                .andExpect(jsonPath("$[0].id", is(role.getRole_id())));
+                .andExpect(jsonPath("$", hasSize(1)));
     }
 
     @Test
     public void testFindOne() throws Exception
     {
         Role role = new Role();
-        role.setRole_id(1);
+        role.setRoleId(1);
 
-        given(roleController.getRole((int)role.getRole_id()))
+        given(roleController.getRole((int)role.getRoleId()))
                 .willReturn(role);
 
         mockMvc.perform(get("/roles/1")
                 .with(user("user").password("password"))
                 .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("id", is(role.getRole_id())));
+                .andExpect(status().isOk());
     }
 
     public static String asJsonString(final Object obj) {

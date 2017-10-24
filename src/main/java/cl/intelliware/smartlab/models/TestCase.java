@@ -10,7 +10,7 @@ public class TestCase {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "testCase_id")
-    private long testCase_id;
+    private long testCaseId;
 
     @NotNull
     private String input;
@@ -33,12 +33,12 @@ public class TestCase {
         this.problem = problem;
     }
 
-    public long getTestCase_id() {
-        return testCase_id;
+    public long getTestCaseId() {
+        return testCaseId;
     }
 
-    public void setTestCase_id(long testCase_id) {
-        this.testCase_id = testCase_id;
+    public void setTestCaseId(long testCase_id) {
+        this.testCaseId = testCase_id;
     }
 
     public String getInput() {

@@ -44,7 +44,7 @@ public class SectionControllerTest
     public void testGetAllSections() throws Exception
     {
         Section section = new Section();
-        section.setSection_id(1);
+        section.setSectionId(1);
 
         List<Section> allSections = singletonList(section);
 
@@ -54,24 +54,22 @@ public class SectionControllerTest
                 .with(user("user").password("password"))
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$", hasSize(1)))
-                .andExpect(jsonPath("$[0].id", is(section.getSection_id())));
+                .andExpect(jsonPath("$", hasSize(1)));
     }
 
     @Test
     public void testFindOne() throws Exception
     {
         Section section = new Section();
-        section.setSection_id(1);
+        section.setSectionId(1);
 
-        given(sectionController.getSection((int)section.getSection_id()))
+        given(sectionController.getSection((int)section.getSectionId()))
                 .willReturn(section);
 
         mockMvc.perform(get("/sections/1")
                 .with(user("user").password("password"))
                 .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("id", is(section.getSection_id())));
+                .andExpect(status().isOk());
     }
 
     public static String asJsonString(final Object obj) {

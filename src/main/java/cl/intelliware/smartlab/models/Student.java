@@ -11,7 +11,7 @@ public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "student_id")
-    private long student_id;
+    private long studentId;
 
     @NotNull
     private int entryYear;
@@ -62,12 +62,12 @@ public class Student {
         this.sections = sections;
     }
 
-    public long getStudent_id() {
-        return student_id;
+    public long getStudentId() {
+        return studentId;
     }
 
-    public void setStudent_id(long student_id) {
-        this.student_id = student_id;
+    public void setStudentId(long student_id) {
+        this.studentId = student_id;
     }
 
     public int getEntryYear() {

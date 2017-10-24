@@ -44,34 +44,32 @@ public class TestCaseControllerTest
     public void testGetAllTestCases() throws Exception
     {
         TestCase testcase = new TestCase();
-        testcase.setTestCase_id(1);
+        testcase.setTestCaseId(1);
 
         List<TestCase> allTestCases = singletonList(testcase);
 
         given(testCaseController.getAllTestCases()).willReturn(allTestCases);
 
-        mockMvc.perform(get("/testcases/all")
+        mockMvc.perform(get("/testCases/all")
                 .with(user("user").password("password"))
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$", hasSize(1)))
-                .andExpect(jsonPath("$[0].id", is(testcase.getTestCase_id())));
+                .andExpect(jsonPath("$", hasSize(1)));
     }
 
     @Test
     public void testFindOne() throws Exception
     {
         TestCase testcase = new TestCase();
-        testcase.setTestCase_id(1);
+        testcase.setTestCaseId(1);
 
-        given(testCaseController.getTestCase((int)testcase.getTestCase_id()))
+        given(testCaseController.getTestCase((int)testcase.getTestCaseId()))
                 .willReturn(testcase);
 
-        mockMvc.perform(get("/testcases/1")
+        mockMvc.perform(get("/testCases/1")
                 .with(user("user").password("password"))
                 .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("id", is(testcase.getTestCase_id())));
+                .andExpect(status().isOk());
     }
 
     public static String asJsonString(final Object obj) {
