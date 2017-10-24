@@ -28,4 +28,4 @@ git remote set-url --add --push origin https://gitlab.diinf.usach.cl/natalia.guz
 - Run server
     - `gradle bootRun`
     
-    :D
+    D:
