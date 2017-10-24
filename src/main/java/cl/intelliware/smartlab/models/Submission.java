@@ -2,6 +2,7 @@ package cl.intelliware.smartlab.models;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.time.Instant;
 import java.util.Date;
 import java.util.Set;
 
@@ -18,13 +19,13 @@ public class Submission {
     private String code;
 
     @NotNull
-    private Date submittedAt;
+    private Date submittedAt = Date.from(Instant.now());
 
-    @NotNull
-    private int failTest;
+    private int failTest = 0;
 
-    @NotNull
-    private int succededTest;
+    private int succededTest = 0;
+
+    private boolean compilationError = false;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "assignment_id")
@@ -37,9 +38,6 @@ public class Submission {
     public void setAssignment(Assignment assignment) {
         this.assignment = assignment;
     }
-
-    @NotNull
-    private boolean compilationError;
 
     public long getSubmission_id() {
         return submission_id;
@@ -87,5 +85,18 @@ public class Submission {
 
     public void setCompilationError(boolean compilationError) {
         this.compilationError = compilationError;
+    }
+
+    @Override
+    public String toString() {
+        return "Submission{" +
+                "submission_id=" + submission_id +
+                ", code='" + code + '\'' +
+                ", submittedAt=" + submittedAt +
+                ", failTest=" + failTest +
+                ", succededTest=" + succededTest +
+                ", compilationError=" + compilationError +
+                ", assignment=" + assignment +
+                '}';
     }
 }

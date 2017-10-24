@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 
 @RestController
-@RequestMapping(path="/problem")
+@RequestMapping(path="/problems")
 public class ProblemController
 {
     private final ProblemRepository problemRepository;
