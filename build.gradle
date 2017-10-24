@@ -14,6 +14,7 @@ apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'war'
+apply plugin: 'jacoco'
 
 group = 'cl.intelliware'
 version = '0.0.1'
@@ -46,6 +47,14 @@ dependencies {
 }
 test {
 	reports.junitXml.destination = file('build/test-results/results')
+}
+jacocoTestReport {
+	group = "Reporting"
+	reports {
+		xml.enabled true
+		csv.enabled false
+		html.destination "${buildDir}/reports/coverage"
+	}
 }
 bootRun {
 	addResources = true
