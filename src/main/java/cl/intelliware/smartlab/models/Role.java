@@ -11,7 +11,7 @@ public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "role_id")
-    private long role_id;
+    private long roleId;
 
     @NotNull
     private String name;
@@ -27,16 +27,14 @@ public class Role {
         this.users = users;
     }
 
-    public long getId() {return role_id;}
-
-    public long getRole_id()
+    public long getRoleId()
     {
-        return role_id;
+        return roleId;
     }
 
-    public void setRole_id(long role_id)
+    public void setRoleId(long role_id)
     {
-        this.role_id = role_id;
+        this.roleId = role_id;
     }
 
     public String getName()

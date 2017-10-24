@@ -11,7 +11,7 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "user_id")
-    private long user_id;
+    private long userId;
 
     @NotNull
     private String password;
@@ -48,14 +48,14 @@ public class User {
     }
 
 
-    public long getUser_id()
+    public long getUserId()
     {
-        return user_id;
+        return userId;
     }
 
-    public void setUser_id(long user_id)
+    public void setUserId(long user_id)
     {
-        this.user_id = user_id;
+        this.userId = user_id;
     }
 
     public String getPassword() {
@@ -105,4 +105,15 @@ public class User {
     public void setRut(String rut) {
         this.rut = rut;
     }
+
+    public boolean rutCheck() {
+        return rut.matches("[1-9]{1,2}.[0-9]{3}.[0-9]{3}-[0-9kK]{1}");
+    }
+
+    public boolean mailCheck(){
+        return mail.matches("[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:.[a-zA-Z0-9-]+)*$");
+    }
+
 }
+
+

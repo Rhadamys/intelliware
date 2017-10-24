@@ -10,7 +10,7 @@ public class Section {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "section_id")
-    private long section_id;
+    private long sectionId;
 
     @NotNull
     private String semester;
@@ -37,12 +37,12 @@ public class Section {
         this.students = students;
     }
 
-    public long getSection_id() {
-        return section_id;
+    public long getSectionId() {
+        return sectionId;
     }
 
-    public void setSection_id(long section_id) {
-        this.section_id = section_id;
+    public void setSectionId(long section_id) {
+        this.sectionId = section_id;
     }
 
     public String getSemester() {

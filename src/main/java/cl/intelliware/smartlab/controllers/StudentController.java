@@ -26,7 +26,7 @@ public class StudentController
     }
 
     @GetMapping(path="/{id}")
-    public @ResponseBody Student getSection(@PathVariable("id") Integer id)
+    public @ResponseBody Student getStudent(@PathVariable("id") Integer id)
     {
         System.out.println(studentRepository);
         long lid = id.longValue();

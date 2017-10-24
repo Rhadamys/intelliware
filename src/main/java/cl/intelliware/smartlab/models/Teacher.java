@@ -7,10 +7,12 @@ import java.util.Set;
 @Entity
 @Table(name="Teachers")
 public class Teacher {
+    private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "teacher_id")
-    private long teacher_id;
+    private long teacherId;
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
@@ -47,8 +49,8 @@ public class Teacher {
         this.problems = problems;
     }
 
-    public void setTeacher_id(long teacher_id) {
-        this.teacher_id = teacher_id;
+    public void setTeacherId(long teacher_id) {
+        this.teacherId = teacher_id;
     }
 
     public Set<Section> getSections() {
@@ -59,8 +61,8 @@ public class Teacher {
         this.sections = sections;
     }
 
-    public long getTeacher_id() {
-        return teacher_id;
+    public long getTeacherId() {
+        return teacherId;
     }
 
 }

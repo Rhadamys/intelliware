@@ -11,7 +11,7 @@ public class Problem {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "problem_id")
-    private long problem_id;
+    private long problemId;
 
     @NotNull
     private String statement;
@@ -67,12 +67,12 @@ public class Problem {
         this.teacher = teacher;
     }
 
-    public long getProblem_id() {
-        return problem_id;
+    public long getProblemId() {
+        return problemId;
     }
 
-    public void setProblem_id(long problem_id) {
-        this.problem_id = problem_id;
+    public void setProblemId(long problem_id) {
+        this.problemId = problem_id;
     }
 
     public String getStatement() {
