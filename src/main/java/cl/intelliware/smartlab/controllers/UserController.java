@@ -9,7 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping(path="/user")
+@RequestMapping(path="/users")
 public class UserController
 {
     private final UserRepository userRepository;
@@ -20,13 +20,13 @@ public class UserController
     }
 
     @GetMapping(path="/all")
-    public @ResponseBody Iterable<User> getAllUser()
+    public @ResponseBody Iterable<User> getAllUsers()
     {
         return userRepository.findAll();
     }
 
     @GetMapping(path="/{id}")
-    public @ResponseBody User getTestCase(@PathVariable("id") Integer id)
+    public @ResponseBody User getUser(@PathVariable("id") Integer id)
     {
         System.out.println(userRepository);
         long lid = id.longValue();

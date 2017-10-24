@@ -9,7 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping(path="/student")
+@RequestMapping(path="/students")
 public class StudentController
 {
     private final StudentRepository studentRepository;
@@ -26,7 +26,7 @@ public class StudentController
     }
 
     @GetMapping(path="/{id}")
-    public @ResponseBody Student getSection(@PathVariable("id") Integer id)
+    public @ResponseBody Student getStudent(@PathVariable("id") Integer id)
     {
         System.out.println(studentRepository);
         long lid = id.longValue();

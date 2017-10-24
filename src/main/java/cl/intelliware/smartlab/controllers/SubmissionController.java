@@ -9,7 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping(path="/submission")
+@RequestMapping(path="/submissions")
 public class SubmissionController
 {
     private final SubmissionRepository submissionRepository;

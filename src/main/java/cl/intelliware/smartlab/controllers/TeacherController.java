@@ -9,7 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping(path="/teacher")
+@RequestMapping(path="/teachers")
 public class TeacherController
 {
     private final TeacherRepository teacherRepository;
@@ -19,14 +19,16 @@ public class TeacherController
         this.teacherRepository = teacherRepository;
     }
 
-    @GetMapping(path="/all")
-    public @ResponseBody Iterable<Teacher> getAllTeachers()
+    @RequestMapping(value = "/all", method = RequestMethod.GET)
+    @ResponseBody
+    public Iterable<Teacher> getAllTeachers()
     {
         return teacherRepository.findAll();
     }
 
-    @GetMapping(path="/{id}")
-    public @ResponseBody Teacher getTeacher(@PathVariable("id") Integer id)
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    @ResponseBody
+    public Teacher getTeacher(@PathVariable("id") Integer id)
     {
         System.out.println(teacherRepository);
         long lid = id.longValue();

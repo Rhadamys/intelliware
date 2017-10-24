@@ -9,7 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping(path="/role")
+@RequestMapping(path="/roles")
 public class RoleController
 {
     private final RoleRepository roleRepository;

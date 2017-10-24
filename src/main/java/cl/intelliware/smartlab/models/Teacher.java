@@ -7,6 +7,8 @@ import java.util.Set;
 @Entity
 @Table(name="Teachers")
 public class Teacher {
+    private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "teacher_id")
