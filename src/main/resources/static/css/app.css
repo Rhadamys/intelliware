@@ -114,3 +114,42 @@ input[type="checkbox"]:checked + .box:before {
     content: '';
     z-index: 10000;
 }
+
+/* Botones */
+.btn-primary {
+    background-color: var(--accent-color);
+}
+
+.btn-group > .btn.active {
+    background-color: var(--main-color);
+    color: white;
+}
+
+.btn-group > .btn:hover {
+    color: gray;
+}
+
+.editor-container {
+    height: 70vh;
+    display: flex;
+    padding: 0;
+}
+
+.CodeMirror {
+    height: 100% !important;
+    width: 65% !important;
+}
+
+.console-container {
+    height: 100%;
+    width: 35%;
+}
+
+.console {
+    background-color: black;
+    color: white;
+    width: 100%;
+    height: 100%;
+    font-family: Courier, Consolas, monospace;
+    border: none;
+}

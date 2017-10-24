@@ -1,0 +1,35 @@
+<div class="container" ng-controller="EditorController">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="btn-group">
+                    <button type="button"
+                            class="btn"
+                            ng-click="changeTheme('default')"
+                            ng-class="{ active: isThemeActive('default') }">Codemirror</button>
+                    <button type="button"
+                            class="btn"
+                            ng-click="changeTheme('ambiance')"
+                            ng-class="{ active: isThemeActive('ambiance') }">Ambiance</button>
+                    <button type="button"
+                            class="btn"
+                            ng-click="changeTheme('mbo')"
+                            ng-class="{ active: isThemeActive('mbo') }">MBO</button>
+                </div>
+                <button class="btn btn-success pull-right"
+                        type="button"
+                        ng-click="runIt()">
+                    <span class="glyphicon glyphicon-play"></span> Ejecutar
+                </button>
+            </div>
+            <div class="panel-body editor-container">
+                <textarea ui-codemirror="{ onLoad: codemirrorLoaded }"
+                          ui-codemirror-opts="editorOptions"></textarea>
+                <div class="console-container">
+                    <pre id="output" class="console"></pre>
+                    <div id="mycanvas"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
