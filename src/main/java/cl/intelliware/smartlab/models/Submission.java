@@ -25,8 +25,6 @@ public class Submission {
 
     private int succededTest = 0;
 
-    private boolean compilationError = false;
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "assignment_id")
     private Assignment assignment;
@@ -93,7 +91,7 @@ public class Submission {
     @Override
     public String toString() {
         return "Submission{" +
-                "submission_id=" + submission_id +
+                "submission_id=" + submissionId +
                 ", code='" + code + '\'' +
                 ", submittedAt=" + submittedAt +
                 ", failTest=" + failTest +

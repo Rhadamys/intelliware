@@ -44,6 +44,9 @@ dependencies {
 	testCompile group: 'junit', name: 'junit'
 	testCompile group: 'org.hsqldb', name: 'hsqldb'
 }
+test {
+	reports.junitXml.destination = file('build/test-results/results')
+}
 bootRun {
 	addResources = true
 }
