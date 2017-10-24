@@ -9,7 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping(path="/student")
+@RequestMapping(path="/students")
 public class StudentController
 {
     private final StudentRepository studentRepository;
