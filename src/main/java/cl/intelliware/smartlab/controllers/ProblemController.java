@@ -5,6 +5,7 @@ import cl.intelliware.smartlab.repositories.ProblemRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -32,5 +33,12 @@ public class ProblemController
         System.out.println(problemRepository);
         long lid = id.longValue();
         return problemRepository.findOne(lid);
+    }
+
+    @RequestMapping(method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.CREATED)
+    @ResponseBody
+    public Problem create(@RequestBody Problem resource) {
+        return problemRepository.save(resource);
     }
 }

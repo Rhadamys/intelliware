@@ -1,4 +1,4 @@
-var app = angular.module('VoteClick', ['ngRoute']);
+var app = angular.module('VoteClick', ['ngRoute', 'ui.codemirror']);
 
 app.config(function($routeProvider){
     $routeProvider
@@ -6,9 +6,9 @@ app.config(function($routeProvider){
             templateUrl: 'js/views/index.html',
             controller: 'MainController'
         })
-        .when('/servicios', {
-            templateUrl: 'js/views/services.html',
-            controller: 'MainController'
+        .when('/editor', {
+            templateUrl: 'js/views/editor.html',
+            controller: 'EditorController'
         })
         .when('/nosotros', {
             templateUrl: 'js/views/about.html',

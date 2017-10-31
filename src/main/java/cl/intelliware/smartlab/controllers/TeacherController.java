@@ -28,8 +28,7 @@ public class TeacherController
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     @ResponseBody
-    public Teacher getTeacher(@PathVariable("id") Integer id)
-    {
+    public Teacher getTeacher(@PathVariable("id") Integer id) {
         System.out.println(teacherRepository);
         long lid = id.longValue();
         return teacherRepository.findOne(lid);
