@@ -60,5 +60,5 @@ jacocoTestReport {
 	}
 }
 bootRun {
-	addResources = true
+	addResources = true //te amo josukee
 }

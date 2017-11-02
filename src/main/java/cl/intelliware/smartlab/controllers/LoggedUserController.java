@@ -30,23 +30,11 @@ public class LoggedUserController
     }
 
 
-    @RequestMapping(value = "/fullName", method = RequestMethod.GET)
-    public Object getUserEmail(OAuth2Authentication authentication) throws IOException {
+    /*@RequestMapping(value = "/fullName", method = RequestMethod.GET)
+    public LoggedUser getUserEmail(OAuth2Authentication authentication) throws IOException {
         loggedUser.getInstance().setUserDetails(authentication);
-        String first = LoggedUser.getInstance().getFirstName();
-        String last = LoggedUser.getInstance().getLastName();
-        String fullName = first + " " + last;
-        System.out.println(fullName);
-        JSONObject json = new JSONObject();
-        try{
-            json.put("name",fullName);
-        }
-
-         catch (JSONException e) {
-            e.printStackTrace();
-        }
-        return json;
-    }
+        return LoggedUser.getInstance();
+    }*/
 
     /*@RequestMapping(value = "/role", method = RequestMethod.GET)
     public String getUserRole(OAuth2Authentication authentication) throws IOException
