@@ -28,7 +28,6 @@ public class RoleController
     @GetMapping(path="/{id}")
     public @ResponseBody Role getRole(@PathVariable("id") Integer id)
     {
-        System.out.println(roleRepository);
         long lid = id.longValue();
         return roleRepository.findOne(lid);
     }

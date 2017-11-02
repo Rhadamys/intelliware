@@ -28,7 +28,6 @@ public class SectionController
     @GetMapping(path="/{id}")
     public @ResponseBody Section getSection(@PathVariable("id") Integer id)
     {
-        System.out.println(sectionRepository);
         long lid = id.longValue();
         return sectionRepository.findOne(lid);
     }

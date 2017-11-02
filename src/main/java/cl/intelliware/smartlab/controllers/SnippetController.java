@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping(path="/assignments")
+@RequestMapping(path="/snippets")
 public class SnippetController
 {
     private final SnippetRepository snippetRepository;
@@ -28,7 +28,6 @@ public class SnippetController
     @GetMapping(path="/{id}")
     public @ResponseBody Snippet getSnippet(@PathVariable("id") Integer id)
     {
-        System.out.println(snippetRepository);
         long lid = id.longValue();
         return snippetRepository.findOne(lid);
     }

@@ -28,7 +28,6 @@ public class UserController
     @GetMapping(path="/{id}")
     public @ResponseBody User getUser(@PathVariable("id") Integer id)
     {
-        System.out.println(userRepository);
         long lid = id.longValue();
         return userRepository.findOne(lid);
     }
