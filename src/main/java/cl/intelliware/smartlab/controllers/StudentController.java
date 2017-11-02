@@ -1,35 +1,45 @@
 package cl.intelliware.smartlab.controllers;
 
-import cl.intelliware.smartlab.models.Student;
-import cl.intelliware.smartlab.repositories.StudentRepository;
+import cl.intelliware.smartlab.models.Role;
+import cl.intelliware.smartlab.models.User;
 
+import cl.intelliware.smartlab.repositories.RoleRepository;
+import cl.intelliware.smartlab.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(path="/students")
 public class StudentController
 {
-    private final StudentRepository studentRepository;
+    private final UserRepository userRepository;
+    private final RoleRepository roleRepository;
+
+    private final Role studentRole;
 
     @Autowired
-    public StudentController(StudentRepository studentRepository) {
-        this.studentRepository = studentRepository;
+    public StudentController(UserRepository userRepository, RoleRepository roleRepository) {
+        this.userRepository = userRepository;
+        this.roleRepository = roleRepository;
+
+        studentRole = roleRepository.findByName("Student");
     }
 
-    @GetMapping(path="/all")
-    public @ResponseBody Iterable<Student> getAllStudents()
+
+    @GetMapping(path="/")
+    public @ResponseBody Iterable<User> getAllStudents()
     {
-        return studentRepository.findAll();
+        return userRepository.findUsersByRolesIs(studentRole);
     }
 
     @GetMapping(path="/{id}")
-    public @ResponseBody Student getStudent(@PathVariable("id") Integer id)
+    public @ResponseBody User getStudent(@PathVariable("id") Integer id)
     {
-        System.out.println(studentRepository);
         long lid = id.longValue();
-        return studentRepository.findOne(lid);
+        User user = userRepository.findOne(lid);
+        if (user.getRoles().contains(studentRole)){
+            return user;
+        }
+        return null;
     }
 }

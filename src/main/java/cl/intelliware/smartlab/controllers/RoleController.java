@@ -19,7 +19,7 @@ public class RoleController
         this.roleRepository = roleRepository;
     }
 
-    @GetMapping(path="/all")
+    @GetMapping(path="/")
     public @ResponseBody Iterable<Role> getAllRoles()
     {
         return roleRepository.findAll();

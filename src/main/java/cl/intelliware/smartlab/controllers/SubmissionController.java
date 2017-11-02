@@ -18,7 +18,7 @@ public class SubmissionController
         this.submissionRepository = submissionRepository;
     }
 
-    @GetMapping(path="/all")
+    @GetMapping(path="/")
     public @ResponseBody Iterable<Submission> getAllSubmissions()
     {
         return submissionRepository.findAll();
