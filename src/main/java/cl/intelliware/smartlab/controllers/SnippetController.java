@@ -28,7 +28,6 @@ public class SnippetController
     @GetMapping(path="/{id}")
     public @ResponseBody Snippet getSnippet(@PathVariable("id") Integer id)
     {
-        System.out.println(snippetRepository);
         long lid = id.longValue();
         return snippetRepository.findOne(lid);
     }

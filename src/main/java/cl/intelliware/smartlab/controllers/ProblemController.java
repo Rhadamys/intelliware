@@ -29,7 +29,6 @@ public class ProblemController
     @GetMapping(path="/{id}")
     public @ResponseBody Problem getProblem(@PathVariable("id") Integer id)
     {
-        System.out.println(problemRepository);
         long lid = id.longValue();
         return problemRepository.findOne(lid);
     }

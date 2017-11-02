@@ -28,7 +28,6 @@ public class TestCaseController
     @GetMapping(path="/{id}")
     public @ResponseBody TestCase getTestCase(@PathVariable("id") Integer id)
     {
-        System.out.println(testCaseRepository);
         long lid = id.longValue();
         return testCaseRepository.findOne(lid);
     }
