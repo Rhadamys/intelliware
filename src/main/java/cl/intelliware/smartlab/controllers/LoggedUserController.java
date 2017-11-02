@@ -17,19 +17,22 @@ import java.security.Principal;
 @RequestMapping("/loggedUsers")
 public class LoggedUserController
 {
+
+    LoggedUser loggedUser = LoggedUser.getInstance();
+
     @RequestMapping(method =  RequestMethod.GET)
     public Object getUserDetails(OAuth2Authentication authentication) throws IOException {
-        LoggedUser.getInstance().setUserDetails(authentication);
+        loggedUser.getInstance().setUserDetails(authentication);
         return LoggedUser.getInstance().getDetails();
     }
 
 
     @RequestMapping(value = "/fullName", method = RequestMethod.GET)
-    public String getUserEmail() throws IOException {
-        //LoggedUser.getInstance().setUserDetails(authentication);
+    public String getUserEmail(OAuth2Authentication authentication) throws IOException {
+        loggedUser.getInstance().setUserDetails(authentication);
         String first = LoggedUser.getInstance().getFirstName();
         String last = LoggedUser.getInstance().getLastName();
-        String fullName = first + last;
+        String fullName = first + " " + last;
         System.out.println(fullName);
         return fullName;
     }

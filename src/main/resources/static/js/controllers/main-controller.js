@@ -15,6 +15,7 @@ app.controller('MainController', ['$scope', '$location', '$http',function($scope
 
     $scope.getFullName = function() {
         $http.get('http://localhost:9090/loggedUsers/fullName/').then(function(response){
+            console.log("hola");
             console.log(respose.data);
             $scope.user = response.data;
         });
