@@ -19,6 +19,14 @@ public class PythonInterpreterAPI
 
         return null;
     }
+    @GetMapping(path="/")
+    public @ResponseBody String test(){
+        PyInterpreter interpreter=new PyInterpreter("2+2");
+        String output= interpreter.run();
+        System.out.println(output);
+        return output;
+    }
+
 }
 
 class PythonRequest{
