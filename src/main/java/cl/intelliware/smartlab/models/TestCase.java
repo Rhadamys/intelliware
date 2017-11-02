@@ -10,7 +10,7 @@ public class TestCase {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "testCase_id")
-    private long testCaseId;
+    private long id;
 
     @NotNull
     private String input;
@@ -18,27 +18,19 @@ public class TestCase {
     @NotNull
     private String output;
 
-    @NotNull
+    @Column
     private String description;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "problem_id")
     private Problem problem;
 
-    public Problem getProblem() {
-        return problem;
+    public long getId() {
+        return id;
     }
 
-    public void setProblem(Problem problem) {
-        this.problem = problem;
-    }
-
-    public long getTestCaseId() {
-        return testCaseId;
-    }
-
-    public void setTestCaseId(long testCase_id) {
-        this.testCaseId = testCase_id;
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getInput() {
@@ -63,5 +55,24 @@ public class TestCase {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Problem getProblem() {
+        return problem;
+    }
+
+    public void setProblem(Problem problem) {
+        this.problem = problem;
+    }
+
+    @Override
+    public String toString() {
+        return "TestCase{" +
+                "id=" + id +
+                ", input='" + input + '\'' +
+                ", output='" + output + '\'' +
+                ", description='" + description + '\'' +
+                ", problem=" + problem +
+                '}';
     }
 }

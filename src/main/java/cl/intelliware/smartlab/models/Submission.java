@@ -1,5 +1,7 @@
 package cl.intelliware.smartlab.models;
 
+import org.hibernate.annotations.CreationTimestamp;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.Instant;
@@ -13,21 +15,34 @@ public class Submission {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "submission_id")
-    private long submissionId;
-
-    @NotNull
-    private String code;
-
-    @NotNull
-    private Date submittedAt = Date.from(Instant.now());
-
-    private int failTest = 0;
-
-    private int succededTest = 0;
+    private long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "assignment_id")
     private Assignment assignment;
+
+    @NotNull
+    private String code;
+
+    @CreationTimestamp
+    private Date submittedAt;
+
+    @Column
+    private int failTest = 0;
+
+    @Column
+    private int succededTest = 0;
+
+    @Column
+    private boolean compilationError = false;
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 
     public Assignment getAssignment() {
         return assignment;
@@ -35,17 +50,6 @@ public class Submission {
 
     public void setAssignment(Assignment assignment) {
         this.assignment = assignment;
-    }
-
-    @NotNull
-    private boolean compilationError;
-
-    public long getSubmissionId() {
-        return submissionId;
-    }
-
-    public void setSubmissionId(long submission_id) {
-        this.submissionId = submission_id;
     }
 
     public String getCode() {
@@ -91,13 +95,13 @@ public class Submission {
     @Override
     public String toString() {
         return "Submission{" +
-                "submission_id=" + submissionId +
+                "id=" + id +
+                ", assignment=" + assignment +
                 ", code='" + code + '\'' +
                 ", submittedAt=" + submittedAt +
                 ", failTest=" + failTest +
                 ", succededTest=" + succededTest +
                 ", compilationError=" + compilationError +
-                ", assignment=" + assignment +
                 '}';
     }
 }

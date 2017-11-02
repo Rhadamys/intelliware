@@ -19,7 +19,7 @@ public class SectionController
         this.sectionRepository = sectionRepository;
     }
 
-    @GetMapping(path="/all")
+    @GetMapping(path="/")
     public @ResponseBody Iterable<Section> getAllSections()
     {
         return sectionRepository.findAll();
