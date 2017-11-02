@@ -1,7 +1,10 @@
 package cl.intelliware.smartlab.models;
 
+import org.hibernate.annotations.CreationTimestamp;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Null;
 import java.util.Date;
 import java.util.Set;
 
@@ -11,24 +14,24 @@ public class Assignment {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "assignment_id")
-    private long assignmentId;
+    private long id;
 
-    @NotNull
-    private Date assignedAt;
-
-    @NotNull
-    private Date deadline;
-
-    @NotNull
-    private Float grade;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "student_id")
+    private User student;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "problem_id")
     private Problem problem;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "student_id")
-    private Student student;
+    @CreationTimestamp
+    private Date assignedAt;
+
+    @NotNull
+    private Date deadline;
+
+    @Column
+    private Float grade;
 
     @OneToMany(
             mappedBy = "assignment",
@@ -37,19 +40,19 @@ public class Assignment {
     )
     private Set<Submission> submissions;
 
-    public Set<Submission> getSubmissions() {
-        return submissions;
+    public long getId() {
+        return id;
     }
 
-    public void setSubmissions(Set<Submission> submissions) {
-        this.submissions = submissions;
+    public void setId(long id) {
+        this.id = id;
     }
 
-    public Student getStudent() {
+    public User getStudent() {
         return student;
     }
 
-    public void setStudent(Student student) {
+    public void setStudent(User student) {
         this.student = student;
     }
 
@@ -59,14 +62,6 @@ public class Assignment {
 
     public void setProblem(Problem problem) {
         this.problem = problem;
-    }
-
-    public long getAssignmentId() {
-        return assignmentId;
-    }
-
-    public void setAssignmentId(long assignment_id) {
-        this.assignmentId = assignment_id;
     }
 
     public Date getAssignedAt() {
@@ -91,5 +86,26 @@ public class Assignment {
 
     public void setGrade(Float grade) {
         this.grade = grade;
+    }
+
+    public Set<Submission> getSubmissions() {
+        return submissions;
+    }
+
+    public void setSubmissions(Set<Submission> submissions) {
+        this.submissions = submissions;
+    }
+
+    @Override
+    public String toString() {
+        return "Assignment{" +
+                "id=" + id +
+                ", student=" + student +
+                ", problem=" + problem +
+                ", assignedAt=" + assignedAt +
+                ", deadline=" + deadline +
+                ", grade=" + grade +
+                ", submissions=" + submissions +
+                '}';
     }
 }
