@@ -1,8 +1,5 @@
 package cl.intelliware.smartlab.controllers;
 
-import cl.intelliware.smartlab.controllers.StudentController;
-import cl.intelliware.smartlab.models.Student;
-
 import java.util.List;
 import static java.util.Collections.singletonList;
 
@@ -26,9 +23,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
 
-import org.mockito.Mockito;
 import static org.mockito.BDDMockito.given;
-import static org.mockito.Mockito.times;
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(StudentController.class)

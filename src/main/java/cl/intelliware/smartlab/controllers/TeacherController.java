@@ -1,37 +1,45 @@
 package cl.intelliware.smartlab.controllers;
 
-import cl.intelliware.smartlab.models.Teacher;
-import cl.intelliware.smartlab.repositories.TeacherRepository;
+import cl.intelliware.smartlab.models.Role;
+import cl.intelliware.smartlab.models.User;
+import cl.intelliware.smartlab.repositories.RoleRepository;
 
+import cl.intelliware.smartlab.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(path="/teachers")
 public class TeacherController
 {
-    private final TeacherRepository teacherRepository;
+    private final UserRepository userRepository;
+    private final RoleRepository roleRepository;
+
+    private final Role role;
 
     @Autowired
-    public TeacherController(TeacherRepository teacherRepository) {
-        this.teacherRepository = teacherRepository;
+    public TeacherController(UserRepository userRepository, RoleRepository roleRepository) {
+        this.userRepository = userRepository;
+        this.roleRepository = roleRepository;
+
+        role = roleRepository.findByName("Teacher");
     }
 
-    @RequestMapping(value = "/all", method = RequestMethod.GET)
-    @ResponseBody
-    public Iterable<Teacher> getAllTeachers()
+
+    @GetMapping(path="/")
+    public @ResponseBody Iterable<User> getAllTeachers()
     {
-        return teacherRepository.findAll();
+        return userRepository.findUsersByRolesIs(role);
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    @ResponseBody
-    public Teacher getTeacher(@PathVariable("id") Integer id)
+    @GetMapping(path="/{id}")
+    public @ResponseBody User getStudent(@PathVariable("id") Integer id)
     {
-        System.out.println(teacherRepository);
         long lid = id.longValue();
-        return teacherRepository.findOne(lid);
+        User user = userRepository.findOne(lid);
+        if (user.getRoles().contains(role)){
+            return user;
+        }
+        return null;
     }
 }

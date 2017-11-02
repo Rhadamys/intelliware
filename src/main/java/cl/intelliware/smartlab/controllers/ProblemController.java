@@ -20,7 +20,7 @@ public class ProblemController
         this.problemRepository = problemRepository;
     }
 
-    @GetMapping(path="/all")
+    @GetMapping(path="/")
     public @ResponseBody Iterable<Problem> getAllProblems()
     {
         return problemRepository.findAll();

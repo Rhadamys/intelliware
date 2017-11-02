@@ -19,7 +19,7 @@ public class TestCaseController
         this.testCaseRepository = testCaseRepository;
     }
 
-    @GetMapping(path="/all")
+    @GetMapping(path="/")
     public @ResponseBody Iterable<TestCase> getAllTestCases()
     {
         return testCaseRepository.findAll();

@@ -19,7 +19,7 @@ public class AssignmentController
         this.assignmentRepository = assignmentRepository;
     }
 
-    @GetMapping(path="/all")
+    @GetMapping(path="/")
     public @ResponseBody Iterable<Assignment> getAllAssignments()
     {
         return assignmentRepository.findAll();

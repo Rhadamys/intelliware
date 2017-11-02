@@ -19,7 +19,7 @@ public class UserController
         this.userRepository = userRepository;
     }
 
-    @GetMapping(path="/all")
+    @GetMapping(path="/")
     public @ResponseBody Iterable<User> getAllUsers()
     {
         return userRepository.findAll();
