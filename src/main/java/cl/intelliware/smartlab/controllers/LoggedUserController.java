@@ -1,6 +1,9 @@
 package cl.intelliware.smartlab.controllers;
 
 import cl.intelliware.smartlab.models.LoggedUser;
+import org.codehaus.jackson.map.util.JSONPObject;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -28,13 +31,21 @@ public class LoggedUserController
 
 
     @RequestMapping(value = "/fullName", method = RequestMethod.GET)
-    public String getUserEmail(OAuth2Authentication authentication) throws IOException {
+    public Object getUserEmail(OAuth2Authentication authentication) throws IOException {
         loggedUser.getInstance().setUserDetails(authentication);
         String first = LoggedUser.getInstance().getFirstName();
         String last = LoggedUser.getInstance().getLastName();
         String fullName = first + " " + last;
         System.out.println(fullName);
-        return fullName;
+        JSONObject json = new JSONObject();
+        try{
+            json.put("name",fullName);
+        }
+
+         catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return json;
     }
 
     /*@RequestMapping(value = "/role", method = RequestMethod.GET)
