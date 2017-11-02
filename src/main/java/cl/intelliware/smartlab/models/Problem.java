@@ -1,5 +1,9 @@
 package cl.intelliware.smartlab.models;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.data.annotation.CreatedDate;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
@@ -11,23 +15,26 @@ public class Problem {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "problem_id")
-    private long problemId;
+    private long id;
+
+    @NotNull
+    private String title;
 
     @NotNull
     private String statement;
 
-    @NotNull
+    @CreationTimestamp
     private Date publishedAt;
 
     @NotNull
     private Date deadline;
 
-    @NotNull
+    @UpdateTimestamp
     private Date updateAt;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "teacher_id")
-    private Teacher teacher;
+    private User teacher;
 
     @OneToMany(
             mappedBy = "problem",
@@ -43,36 +50,20 @@ public class Problem {
     )
     private Set<Assignment> assignments;
 
-    public Set<Assignment> getAssignments() {
-        return assignments;
+    public long getId() {
+        return id;
     }
 
-    public void setAssignments(Set<Assignment> assignments) {
-        this.assignments = assignments;
+    public void setId(long id) {
+        this.id = id;
     }
 
-    public Set<TestCase> getTestCases() {
-        return testCases;
+    public String getTitle() {
+        return title;
     }
 
-    public void setTestCases(Set<TestCase> testCases) {
-        this.testCases = testCases;
-    }
-
-    public Teacher getTeacher() {
-        return teacher;
-    }
-
-    public void setTeacher(Teacher teacher) {
-        this.teacher = teacher;
-    }
-
-    public long getProblemId() {
-        return problemId;
-    }
-
-    public void setProblemId(long problem_id) {
-        this.problemId = problem_id;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getStatement() {
@@ -105,5 +96,44 @@ public class Problem {
 
     public void setUpdateAt(Date updateAt) {
         this.updateAt = updateAt;
+    }
+
+    public User getTeacher() {
+        return teacher;
+    }
+
+    public void setTeacher(User teacher) {
+        this.teacher = teacher;
+    }
+
+    public Set<TestCase> getTestCases() {
+        return testCases;
+    }
+
+    public void setTestCases(Set<TestCase> testCases) {
+        this.testCases = testCases;
+    }
+
+    public Set<Assignment> getAssignments() {
+        return assignments;
+    }
+
+    public void setAssignments(Set<Assignment> assignments) {
+        this.assignments = assignments;
+    }
+
+    @Override
+    public String toString() {
+        return "Problem{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", statement='" + statement + '\'' +
+                ", publishedAt=" + publishedAt +
+                ", deadline=" + deadline +
+                ", updateAt=" + updateAt +
+                ", teacher=" + teacher +
+                ", testCases=" + testCases +
+                ", assignments=" + assignments +
+                '}';
     }
 }

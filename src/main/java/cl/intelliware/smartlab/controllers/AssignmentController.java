@@ -19,7 +19,7 @@ public class AssignmentController
         this.assignmentRepository = assignmentRepository;
     }
 
-    @GetMapping(path="/all")
+    @GetMapping(path="/")
     public @ResponseBody Iterable<Assignment> getAllAssignments()
     {
         return assignmentRepository.findAll();
@@ -28,7 +28,6 @@ public class AssignmentController
     @GetMapping(path="/{id}")
     public @ResponseBody Assignment getAssignment(@PathVariable("id") Integer id)
     {
-        System.out.println(assignmentRepository);
         long lid = id.longValue();
         return assignmentRepository.findOne(lid);
     }
