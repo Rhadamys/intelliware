@@ -24,6 +24,9 @@ public class Snippet {
     @NotNull
     private String title;
 
+    @Column
+    private String description;
+
     @NotNull
     private String code;
 
@@ -69,12 +72,29 @@ public class Snippet {
         return updatedAt;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Date getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(Date updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
     @Override
     public String toString() {
         return "Snippet{" +
                 "id=" + id +
                 ", user=" + user +
                 ", title='" + title + '\'' +
+                ", description='" + description + '\'' +
                 ", code='" + code + '\'' +
                 ", updatedAt=" + updatedAt +
                 '}';
