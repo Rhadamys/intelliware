@@ -3,6 +3,7 @@ package cl.intelliware.smartlab.controllers;
 import cl.intelliware.smartlab.models.LoggedUser;
 import cl.intelliware.smartlab.models.Role;
 import cl.intelliware.smartlab.models.User;
+import cl.intelliware.smartlab.repositories.RoleRepository;
 import cl.intelliware.smartlab.repositories.UserRepository;
 import org.codehaus.jackson.map.util.JSONPObject;
 import org.json.JSONException;
@@ -23,11 +24,13 @@ import java.util.Set;
 public class LoggedUserController
 {
     private final UserRepository userRepository;
+    private final RoleRepository roleRepository;
     LoggedUser loggedUser = LoggedUser.getInstance();
 
     @Autowired
-    public LoggedUserController(UserRepository userRepository) {
+    public LoggedUserController(UserRepository userRepository, RoleRepository roleRepository) {
         this.userRepository = userRepository;
+        this.roleRepository = roleRepository;
     }
 
     @RequestMapping(method =  RequestMethod.GET)
@@ -68,8 +71,8 @@ public class LoggedUserController
                 loggedUser.getInstance().setFlag(1);
 
                 User neo = new User();
-                //Set<Role> roles = new HashSet<Role>();
-                //Role rol = new Role();
+                Set<Role> roles = new HashSet<Role>();
+                roles.add(roleRepository.findByName("Unassigned"));
                 //rol.setName("Unassigned");
                 //rol.setId(4L);
                 //roles.add(rol);
@@ -77,7 +80,8 @@ public class LoggedUserController
                 neo.setFirstName(loggedUser.getInstance().getFirstName());
                 neo.setLastName(loggedUser.getInstance().getLastName());
                 neo.setMail(loggedUser.getInstance().geteMail());
-                //neo.setRoles(roles);
+
+                neo.setRoles(roles);
                 userRepository.save(neo);
             }
             else if((user != null)&&(loggedUser.getInstance().geteMail() != null))
