@@ -13,6 +13,7 @@ public class LoggedUser
     private Object details;
     private String firstName;
     private String lastName;
+    private int flag = 0;
 
     //SINGLETON
     public static LoggedUser getInstance()
@@ -41,7 +42,7 @@ public class LoggedUser
 
             String detailsString = LoggedUser.getInstance().getDetails().toString();
 
-            String detailsParts[] = detailsString.split(",");
+        String detailsParts[] = detailsString.split(",");
 
             String emailDetail = detailsParts[1];
             String emailParts[] = emailDetail.split("=");
@@ -111,5 +112,13 @@ public class LoggedUser
 
     public String getLastName() {
         return lastName;
+    }
+
+    public int getFlag() {
+        return flag;
+    }
+
+    public void setFlag(int flag) {
+        this.flag = flag;
     }
 }
