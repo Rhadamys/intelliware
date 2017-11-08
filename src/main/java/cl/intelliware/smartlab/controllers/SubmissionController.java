@@ -1,6 +1,6 @@
 package cl.intelliware.smartlab.controllers;
 
-import cl.intelliware.smartlab.utils.PyInterpreter;
+import cl.intelliware.smartlab.utils.PyInterpreter.PyInterpreter;
 import cl.intelliware.smartlab.models.Submission;
 import cl.intelliware.smartlab.repositories.SubmissionRepository;
 

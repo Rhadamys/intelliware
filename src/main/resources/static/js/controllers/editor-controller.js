@@ -1,4 +1,4 @@
-app.controller('EditorController', ['$scope', '$document', function($scope) {
+app.controller('EditorController', ['$scope', '$http', '$document', function($scope,$http,$document) {
     $scope.editor = null;
     $scope.console = document.getElementById("output");
 
@@ -26,18 +26,39 @@ app.controller('EditorController', ['$scope', '$document', function($scope) {
      */
     $scope.changeTheme = function(theme){
         $scope.editor.setOption('theme',theme);
-    }
+    };
+
+    /** API CALLS */
+    $scope.postSubmission = function() {
+        $http({
+            method: 'POST',
+            url: 'http://localhost:9090/python/',
+            data: {
+                code : $scope.editor.getDoc().getValue(),
+            }
+        })
+        .then(
+            function(response) {
+                $scope.outf(response.data.response);
+        })
+        .catch(
+            function(error) {
+                $scope.outf(error);
+        }
+        );
+    };
+
+
+    $scope.outf = function(text) {
+        $scope.console.innerHTML = text;
+    };
 
     /** FUNCIONES DE SKULPT */
-    $scope.outf = function(text) {
-        $scope.console.innerHTML = $scope.console.innerHTML + text;
-    }
-
     $scope.builtinRead = function(x) {
         if (Sk.builtinFiles === undefined || Sk.builtinFiles["files"][x] === undefined)
             throw "File not found: '" + x + "'";
         return Sk.builtinFiles["files"][x];
-    }
+    };
 
     $scope.runIt = function() {
         var prog = $scope.editor.getDoc().getValue();
@@ -55,9 +76,9 @@ app.controller('EditorController', ['$scope', '$document', function($scope) {
             function(err) {
                 $scope.console.innerHTML = err.toString();
             });
-    }
+    };
 
     $scope.isThemeActive = function(theme) {
         return $scope.editor.getOption('theme') === theme;
     }
-}]);
+}])
