@@ -25,6 +25,11 @@ public class TestCase {
     @JoinColumn(name = "problem_id")
     private Problem problem;
 
+    public TestCase(String input, String output) {
+        this.input = input;
+        this.output = output;
+    }
+
     public long getId() {
         return id;
     }
