@@ -31,4 +31,5 @@ public class UserController
         long lid = id.longValue();
         return userRepository.findOne(lid);
     }
+
 }
