@@ -2,12 +2,11 @@ package cl.intelliware.smartlab.controllers;
 
 import cl.intelliware.smartlab.models.Problem;
 import cl.intelliware.smartlab.repositories.ProblemRepository;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.http.HttpStatus;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.HashMap;
 
 
 @RestController
@@ -38,7 +37,8 @@ public class ProblemController
     @RequestMapping(method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
     @ResponseBody
-    public Problem create(@RequestBody Problem resource) {
-        return problemRepository.save(resource);
+    public Problem create(@RequestBody HashMap<String, Object> resource) {
+        System.out.println(resource);
+        return null;
     }
 }

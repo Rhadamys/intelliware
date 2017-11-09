@@ -18,6 +18,10 @@ app.config(function($routeProvider){
             templateUrl: 'js/views/contact.html',
             controller: 'MainController'
         })
+        .when('/problemas/nuevo', {
+            templateUrl: 'js/views/problem.html',
+            controller: 'ProblemController'
+        })
         .otherwise({
             redirectTo: '/'
         });

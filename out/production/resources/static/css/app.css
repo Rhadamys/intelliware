@@ -8,6 +8,10 @@ body {
     background: #DDDDDD;
 }
 
+textarea {
+    resize: none;
+}
+
 /* Barra de navegación */
 .navbar {
     background: var(--main-color) !important;
@@ -43,8 +47,42 @@ body {
     font-weight: bold !important;
 }
 
+.text-center > h3 {
+    font-weight: bold;
+}
+
 .panel-footer {
     background: #CFCFCF !important;
+}
+
+.test-case {
+    padding-top: 0.75em;
+    padding-bottom: 0.75em;
+}
+
+.test-case:nth-child(odd) {
+    background-color: #F0F0F0;
+}
+
+.test-case-options {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    margin-top: 0.75em !important;
+}
+
+.test-case-options > .btn {
+    margin-left: 0.5em;
+}
+
+.assignment {
+    margin-right: 0.5em;
+}
+
+.assignment-close {
+    color: white;
+    cursor: pointer;
 }
 
 /* Otros elementos */

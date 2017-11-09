@@ -7,6 +7,9 @@ import org.springframework.boot.web.support.SpringBootServletInitializer;
 
 import org.python.util.PythonInterpreter;
 
+import javax.annotation.PostConstruct;
+import java.util.TimeZone;
+
 @SpringBootApplication
 public class SmartlabApplication extends SpringBootServletInitializer{
 	@Override
@@ -16,26 +19,11 @@ public class SmartlabApplication extends SpringBootServletInitializer{
 
 	public static void main(String[] args) {
 		SpringApplication.run(SmartlabApplication.class, args);
+	}
 
-
-//		PythonInterpreter P = PyInterpreter.getInstance();
-//
-//		System.out.println("hola mundo");
-//
-//		try {
-//			P.exec(
-//					"def algo():\n\tprint \"hago algo\"\n\treturn 2+2\n\nresultado = algo()\nprint resultado"
-//			);
-//		}
-//		catch (Exception e){
-//			System.out.println(e);
-//		}
-//
-//		P.cleanup();
-//		P.exec("print \"chao mundo\"");
-//
-//		System.out.println("lol");
-
-
+	@PostConstruct
+	void started() {
+		// Changes the default time zone to Santiago de Chile
+		TimeZone.setDefault(TimeZone.getTimeZone("America/Santiago"));
 	}
 }
