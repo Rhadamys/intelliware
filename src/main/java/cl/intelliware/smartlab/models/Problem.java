@@ -3,6 +3,7 @@ package cl.intelliware.smartlab.models;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -14,6 +15,9 @@ public class Problem {
     private long problemId;
 
     @NotNull
+    private String title;
+
+    @NotNull
     private String statement;
 
     @NotNull
@@ -23,7 +27,7 @@ public class Problem {
     private Date deadline;
 
     @NotNull
-    private Date updateAt;
+    private Date updatedAt;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "teacher_id")
@@ -41,22 +45,49 @@ public class Problem {
             cascade = CascadeType.ALL,
             orphanRemoval = true
     )
+
     private Set<Assignment> assignments;
+
+    @PrePersist
+    void onCreate() {
+        this.publishedAt = new Date();
+        this.updatedAt = this.publishedAt;
+    }
+
+    @PreUpdate
+    void onUpdate() {
+        this.updatedAt = new Date();
+    }
+
+    public Problem() {}
+
+    public Problem(String title, String statement, Date deadline, Teacher teacher ){
+        this.title = title;
+        this.statement = statement;
+        this.deadline = deadline;
+        this.assignments = new HashSet<>();
+        this.testCases = new HashSet<>();
+        this.teacher = teacher;
+    }
+
+    public String getTitle() { return title; }
+
+    public void setTitle(String title) { this.title = title; }
 
     public Set<Assignment> getAssignments() {
         return assignments;
     }
 
-    public void setAssignments(Set<Assignment> assignments) {
-        this.assignments = assignments;
+    public void addAssignment(Assignment assignment) {
+        this.assignments.add(assignment);
     }
 
     public Set<TestCase> getTestCases() {
         return testCases;
     }
 
-    public void setTestCases(Set<TestCase> testCases) {
-        this.testCases = testCases;
+    public void addTestCase(TestCase testCase) {
+        this.testCases.add(testCase);
     }
 
     public Teacher getTeacher() {
@@ -99,11 +130,12 @@ public class Problem {
         this.deadline = deadline;
     }
 
-    public Date getUpdateAt() {
-        return updateAt;
+    public Date getUpdatedAt() {
+        return updatedAt;
     }
 
-    public void setUpdateAt(Date updateAt) {
-        this.updateAt = updateAt;
+    public void setUpdatedAt(Date updatedAt) {
+        this.updatedAt = updatedAt;
     }
+
 }
