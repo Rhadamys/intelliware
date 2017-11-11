@@ -7,6 +7,7 @@ import org.springframework.data.annotation.CreatedDate;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -48,6 +49,7 @@ public class Problem {
             cascade = CascadeType.ALL,
             orphanRemoval = true
     )
+
     private Set<Assignment> assignments;
 
     public long getId() {
@@ -90,12 +92,12 @@ public class Problem {
         this.deadline = deadline;
     }
 
-    public Date getUpdateAt() {
-        return updateAt;
+    public Date getUpdatedAt() {
+        return updatedAt;
     }
 
-    public void setUpdateAt(Date updateAt) {
-        this.updateAt = updateAt;
+    public void setUpdatedAt(Date updatedAt) {
+        this.updatedAt = updatedAt;
     }
 
     public User getTeacher() {
