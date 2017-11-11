@@ -1,4 +1,4 @@
-app.controller('CreateProblemController', ['$scope', '$http', function($scope, $http) {
+app.controller('CreateProblemController', ['$scope', '$http', '$window', function($scope, $http, $window) {
     $scope.today = function() {
       var today = new Date();
       var year = today.getFullYear();
@@ -147,16 +147,16 @@ app.controller('CreateProblemController', ['$scope', '$http', function($scope, $
 
     $scope.send = function () {
       $http.post("http://localhost:9090/problems", $scope.problem)
-          .then(function successCallback(response) {
-              console.log("Correcto " + response);
-          }, function errorCallback(response) {
-              console.log("Error " + response);
+          .then(function successCallback() {
+              $window.history.back();
+          }, function errorCallback() {
+              alert('Su solicitud no pudo ser procesada. Intente nuevamente en unos instantes.');
           });
     };
 
     // Initial data
     $scope.getStudents = function() {
-        $http.post("http://localhost:9090/students/all", $scope.problem)
+        $http.get("http://localhost:9090/students/all", $scope.problem)
             .then(function successCallback(response) {
                 $scope.students = response.data;
             }, function errorCallback(response) {

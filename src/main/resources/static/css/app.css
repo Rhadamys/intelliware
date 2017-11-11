@@ -92,6 +92,28 @@ textarea {
     line-height:1.5em;
 }
 
+.trim-text {
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.problem-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.info {
+    color: #777777;
+    height: 70vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
 /* Otros elementos */
 a {
     color: var(--main-color);
