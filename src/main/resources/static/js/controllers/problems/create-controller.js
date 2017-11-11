@@ -1,4 +1,4 @@
-app.controller('ProblemController', ['$scope', '$http', function($scope, $http) {
+app.controller('CreateProblemController', ['$scope', '$http', function($scope, $http) {
     $scope.today = function() {
       var today = new Date();
       var year = today.getFullYear();
@@ -21,98 +21,7 @@ app.controller('ProblemController', ['$scope', '$http', function($scope, $http) 
     ];
 
     $scope.matchQuery = false;
-    $scope.students = [
-        {
-            user: {
-                firstName: 'Mario',
-                lastName: 'Álvarez'
-            },
-            section: {
-                semester: 'A1'
-            }
-        },
-        {
-            user: {
-                firstName: 'Luis',
-                lastName: 'Migryk'
-            },
-            section: {
-                semester: 'A1'
-            }
-        },
-        {
-            user: {
-                firstName: 'Natalia',
-                lastName: 'Guzmán'
-            },
-            section: {
-                semester: 'B2'
-            }
-        },
-        {
-            user: {
-                firstName: 'Joaquín',
-                lastName: 'Jara'
-            },
-            section: {
-                semester: 'B2'
-            }
-        },
-        {
-            user: {
-                firstName: 'Gerardo',
-                lastName: 'Zúñiga'
-            },
-            section: {
-                semester: 'C3'
-            }
-        },
-        {
-            user: {
-                firstName: 'Javier',
-                lastName: 'Vásquez'
-            },
-            section: {
-                semester: 'C3'
-            }
-        },
-        {
-            user: {
-                firstName: 'Javier',
-                lastName: 'Arredondo'
-            },
-            section: {
-                semester: 'D4'
-            }
-        },
-        {
-            user: {
-                firstName: 'Nicolás',
-                lastName: 'Paredes'
-            },
-            section: {
-                semester: 'D4'
-            }
-        },
-        {
-            user: {
-                firstName: 'Enrique',
-                lastName: 'Avilés'
-            },
-            section: {
-                semester: 'E5'
-            }
-        },
-        {
-            user: {
-                firstName: 'Cristian',
-                lastName: 'Espinoza'
-            },
-            section: {
-                semester: 'E5'
-            }
-        }
-    ];
+    $scope.students = [];
 
     $scope.problem = {
         testCases: [
@@ -127,6 +36,7 @@ app.controller('ProblemController', ['$scope', '$http', function($scope, $http) 
 
     $scope.sections = [];
 
+    // Test cases
     $scope.addTestCase = function() {
         $scope.problem.testCases.push({
             entrada: '',
@@ -156,7 +66,7 @@ app.controller('ProblemController', ['$scope', '$http', function($scope, $http) 
         ];
     };
 
-    // ASSIGNMENTS
+    // Assignments
     $scope.assignStudent = function(student, update) {
         $scope.problem.assignments.push(student);
         var index = $scope.students.indexOf(student);
@@ -207,7 +117,7 @@ app.controller('ProblemController', ['$scope', '$http', function($scope, $http) 
         $scope.updateSections();
     }
 
-    // OTHER
+    // Other functions
     $scope.clean = function(text) {
         var replace = 'áéíóúüÁÉÍÓÚÜ';
         var repWith = 'aeiouuAEIOUU';
@@ -244,6 +154,17 @@ app.controller('ProblemController', ['$scope', '$http', function($scope, $http) 
           });
     };
 
+    // Initial data
+    $scope.getStudents = function() {
+        $http.post("http://localhost:9090/students/all", $scope.problem)
+            .then(function successCallback(response) {
+                $scope.students = response.data;
+            }, function errorCallback(response) {
+                console.log("Error " + response);
+            });
+    };
+
+    $scope.getStudents();
     $scope.updateSections();
     $scope.allSections = $scope.sections;
 }]);

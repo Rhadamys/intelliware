@@ -20,7 +20,7 @@ public class ProblemController
         this.problemRepository = problemRepository;
     }
 
-    @GetMapping(path="/all")
+    @GetMapping(path="/")
     public @ResponseBody Iterable<Problem> getAllProblems()
     {
         return problemRepository.findAll();
@@ -29,7 +29,6 @@ public class ProblemController
     @GetMapping(path="/{id}")
     public @ResponseBody Problem getProblem(@PathVariable("id") Integer id)
     {
-        System.out.println(problemRepository);
         long lid = id.longValue();
         return problemRepository.findOne(lid);
     }

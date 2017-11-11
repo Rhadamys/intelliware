@@ -19,7 +19,7 @@ public class TestCaseController
         this.testCaseRepository = testCaseRepository;
     }
 
-    @GetMapping(path="/all")
+    @GetMapping(path="/")
     public @ResponseBody Iterable<TestCase> getAllTestCases()
     {
         return testCaseRepository.findAll();
@@ -28,7 +28,6 @@ public class TestCaseController
     @GetMapping(path="/{id}")
     public @ResponseBody TestCase getTestCase(@PathVariable("id") Integer id)
     {
-        System.out.println(testCaseRepository);
         long lid = id.longValue();
         return testCaseRepository.findOne(lid);
     }

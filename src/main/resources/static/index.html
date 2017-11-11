@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es" ng-app="VoteClick" ng-controller="MainController">
+<html lang="es" ng-app="Smartlab" ng-controller="MainController">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -34,32 +34,12 @@
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <script src="https://use.fontawesome.com/51a81e535c.js"></script>
 
     <title>SmartLab - {{ title }}</title>
 </head>
-<body>
-    <nav class="navbar navbar-default navbar-static-top">
-        <div class="container">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="#">SmartLab</a>
-            </div>
-
-            <div class="collapse navbar-collapse" id="app-navbar-collapse" style="padding-left: 10em">
-                <!-- Left Side Of Navbar -->
-                <a href="#!/" class="btn navbar-btn" ng-class="{ active: isActive('/') }" role="button">Inicio</a>
-                <a href="#!/editor" class="btn navbar-btn" ng-class="{ active: isActive('/editor') }" role="button">Editor</a>
-                <a href="#!/nosotros" class="btn navbar-btn" ng-class="{ active: isActive('/nosotros') }" role="button">Nosotros</a>
-                <a href="#!/contacto" class="btn navbar-btn" ng-class="{ active: isActive('/contacto') }" role="button">Contacto</a>
-
-                <!-- Right Side Of Navbar -->
-                <ul class="nav navbar-right">
-                    <a href="#" class="btn navbar-btn" role="button">Iniciar sesión</a>
-                    <a href="#" class="btn navbar-btn" role="button">Registrarse</a>
-                </ul>
-            </div>
-        </div>
-    </nav>
     <main>
+        <div ng-include="'js/views/guest-navbar'"></div>
     	<div ng-view></div>
     </main>
 
@@ -68,6 +48,7 @@
     <!-- Angular Controllers -->
 	<script src="js/controllers/main-controller.js"></script>
     <script src="js/controllers/editor-controller.js"></script>
-    <script src="js/controllers/problem-controller.js"></script>
+    <script src="js/controllers/problems/create-controller.js"></script>
+    <script src="js/controllers/problems/list-controller.js"></script>
 </body>
 </html>

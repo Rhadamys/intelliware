@@ -19,7 +19,7 @@ public class SectionController
         this.sectionRepository = sectionRepository;
     }
 
-    @GetMapping(path="/all")
+    @GetMapping(path="/")
     public @ResponseBody Iterable<Section> getAllSections()
     {
         return sectionRepository.findAll();
@@ -28,7 +28,6 @@ public class SectionController
     @GetMapping(path="/{id}")
     public @ResponseBody Section getSection(@PathVariable("id") Integer id)
     {
-        System.out.println(sectionRepository);
         long lid = id.longValue();
         return sectionRepository.findOne(lid);
     }
