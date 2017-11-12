@@ -1,6 +1,6 @@
 app.controller('MainController', ['$scope', '$location', '$http',function($scope, $location, $http) {
 	$scope.title = "Inicio";
-	$scope.name = "invitado";
+	$scope.user = null;
 	$scope.flag = 0;
 
 	$scope.isActive = function(route) {
@@ -15,8 +15,8 @@ app.controller('MainController', ['$scope', '$location', '$http',function($scope
 
     var init = function(){
         //console.log("primer get");
-        $http.get('http://localhost:9090/loggedUsers/').then(function(response){
-            $scope.user = response.data;
+        $http.get('http://localhost:9090/users/logged').then(function(response){
+            $scope.user = response.data.userAuthentication.details;
             //console.log($scope.user);
         });
         //console.log("segundo get");
@@ -39,12 +39,28 @@ app.controller('MainController', ['$scope', '$location', '$http',function($scope
         console.log = 'Se ha producido un error';
     });*/
 
-    $scope.getFullName = function() {
-        $http.get('http://localhost:9090/loggedUsers/fullName').then(function(response){
+    $scope.getUserInfo = function() {
+        $http.get('http://localhost:9090/users/logged').then(function(response){
             //console.log(response.data);
-            $scope.name = response.data.name;
+            $scope.user = response.data.userAuthentication.details;
         });
     };
+
+    $scope.logout = function() {
+        $http({
+            method: 'POST',
+            url: 'http://localhost:9090/logout',
+        })
+        .then(function(res) {
+            console.log($scope.user);
+            $scope.user = null;
+            console.log($scope.user);
+        })
+        .catch(function(error) {
+			console.log("Logout error : ", error);
+		});
+	};
+
 
     /*$scope.logout = function() {
         logout($scope.loginData);
