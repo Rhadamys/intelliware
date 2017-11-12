@@ -1,4 +1,4 @@
-app.controller('EditorController', ['$scope', '$http', '$document', function($scope,$http,$document) {
+app.controller('EditorController', ['$scope', '$http', '$document', 'snippetService', function($scope,$http,$document,snippetService) {
     $scope.editor = null;
     $scope.console = document.getElementById("output");
     $scope.snippetDescription = ' ';
@@ -10,6 +10,16 @@ app.controller('EditorController', ['$scope', '$http', '$document', function($sc
         theme: 'default',
     };
 
+    $scope.loadSnippet = function(){
+        snippet = snippetService.popSnippet();
+        if(snippet != null){
+            $scope.editor.getDoc().setValue(snippet.code);
+            $scope.snippetTitle = snippet.title;
+            $scope.snippetDescription = snippet.description;
+            $scope.currentSnippet = null;
+        }
+    };
+
     $scope.codemirrorLoaded = function(_editor){
         // Editor part
         var _doc = _editor.getDoc();
@@ -19,6 +29,8 @@ app.controller('EditorController', ['$scope', '$http', '$document', function($sc
         _doc.markClean();
 
         $scope.editor = _editor;
+
+        $scope.loadSnippet();
     };
 
     /**
