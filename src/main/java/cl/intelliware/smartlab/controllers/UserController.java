@@ -5,6 +5,8 @@ import cl.intelliware.smartlab.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
+
 @RestController
 @RequestMapping(path="/users")
 public class UserController
@@ -28,5 +30,10 @@ public class UserController
         long lid = id.longValue();
         return userRepository.findOne(lid);
     }
+
+    @RequestMapping("/logged")
+	public Principal loggedUserInfo(Principal principal) {
+		return principal;
+	}
 
 }
