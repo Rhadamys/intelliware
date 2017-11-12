@@ -9,7 +9,7 @@ app.controller('ListProblemsController', ['$scope', '$http', function($scope, $h
     $scope.getProblems = function() {
         $http.get("http://localhost:9090/problems/all", $scope.problem)
             .then(function successCallback(response) {
-                $scope.students = response.data;
+                $scope.problems = response.data;
             }, function errorCallback(response) {
                 console.log("Error " + response);
             });
