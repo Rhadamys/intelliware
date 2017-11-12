@@ -220,3 +220,8 @@ input[type="checkbox"]:checked + .box:before {
     font-family: Courier, Consolas, monospace;
     border: none;
 }
+
+#profile-picture{
+    max-height: 50px;
+    padding: 5px;
+}
