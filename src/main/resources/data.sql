@@ -1,6 +1,6 @@
 INSERT INTO users (first_name, last_name, mail, rut) VALUES ("Mario", "Alvarez", "mario.alvarez@usach.cl", "19.787.283-3");
 INSERT INTO users (first_name, last_name, mail, rut) VALUES ("Natalia", "Guzman", "natalia.guzman@usach.cl", "19.878.234-2");
-INSERT INTO users (first_name, last_name, mail, rut) VALUES ("Gerardo", "Zuñiga", "gerardo.zuñiga@usach.cl", "19.543.523-4");
+INSERT INTO users (first_name, last_name, mail, rut) VALUES ("Gerardo", "Zuñiga", "gerardo.zuniga@usach.cl", "19.543.523-4");
 INSERT INTO users (first_name, last_name, mail, rut) VALUES ("Javier", "Vasquez", "javier.vasquez@usach.cl", "18.424.212-3");
 INSERT INTO users (first_name, last_name, mail, rut) VALUES ("Joaquin", "Jara", "joaquin.jara@usach.cl", "19.680.541-k");
 INSERT INTO users (first_name, last_name, mail, rut) VALUES ("Rodrigo", "Scheel", "rodrigo.scheel@usach.cl", "19.321.123-0");

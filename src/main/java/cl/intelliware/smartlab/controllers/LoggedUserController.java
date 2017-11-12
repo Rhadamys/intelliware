@@ -59,6 +59,11 @@ public class LoggedUserController
         return json.toString();
     }
 
+    @RequestMapping(value = "/details", method = RequestMethod.GET)
+    public User getUserDetails() throws IOException, JSONException {
+        return userRepository.findByMail(loggedUser.getInstance().geteMail());
+    }
+
     @RequestMapping(path="/new", method= RequestMethod.GET)
     public void createStudent()
     {
