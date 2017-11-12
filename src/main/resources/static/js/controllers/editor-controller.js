@@ -1,6 +1,7 @@
 app.controller('EditorController', ['$scope', '$http', '$document', function($scope,$http,$document) {
     $scope.editor = null;
     $scope.console = document.getElementById("output");
+    $scope.snippetDescription = ' ';
 
     $scope.editorOptions = {
         mode: 'python',
@@ -30,6 +31,7 @@ app.controller('EditorController', ['$scope', '$http', '$document', function($sc
 
     /** API CALLS */
     $scope.postSubmission = function() {
+
         $http({
             method: 'POST',
             url: 'http://localhost:9090/python/',
@@ -39,6 +41,29 @@ app.controller('EditorController', ['$scope', '$http', '$document', function($sc
         })
         .then(
             function(response) {
+                $scope.outf(response.data.response);
+        })
+        .catch(
+            function(error) {
+                $scope.outf(error);
+        }
+        );
+    };
+    $scope.postSnippet = function() {
+
+        $http({
+            method: 'POST',
+            url: 'http://localhost:9090/snippets/',
+            data: {
+                code : $scope.editor.getDoc().getValue(),
+                title: $scope.snippetTitle,
+                description: $scope.snippetDescription,
+                user_id: 1
+            }
+        })
+        .then(
+            function(response) {
+                console.log(response);
                 $scope.outf(response.data.response);
         })
         .catch(
