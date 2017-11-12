@@ -1,5 +1,6 @@
 package cl.intelliware.smartlab.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
@@ -52,15 +53,19 @@ public class User {
             joinColumns = @JoinColumn(name = "student_id"),
             inverseJoinColumns = @JoinColumn(name = "section_id")
     )
+    @JsonIgnore
     private Set<Section> sectionsAttending;
 
     @OneToMany(mappedBy = "user")
+    @JsonIgnore
     private List<Snippet> snippets;
 
     @OneToMany(mappedBy = "teacher")
+    @JsonIgnore
     private List<Problem> problems;
 
     @OneToMany(mappedBy = "student")
+    @JsonIgnore
     private List<Assignment> assignments;
 
     // METHODS

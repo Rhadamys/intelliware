@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
+import java.util.HashMap;
 
 @RestController
 @RequestMapping(path="/users")
@@ -31,9 +32,18 @@ public class UserController
         return userRepository.findOne(lid);
     }
 
-    @RequestMapping("/logged")
-	public Principal loggedUserInfo(Principal principal) {
-		return principal;
-	}
+    @PostMapping(path="/byMail")
+    public @ResponseBody User getUserByMail(@RequestBody HashMap<String, Object> request)
+    {
+        System.out.println(request.get("email").toString());
+        User user = userRepository.findByMail(request.get("email").toString());
+        System.out.println(user);
+        return user;
+    }
 
+    @RequestMapping("/logged")
+	public @ResponseBody Principal loggedUserInfo(Principal principal) {
+        return principal;
+	}
 }
+

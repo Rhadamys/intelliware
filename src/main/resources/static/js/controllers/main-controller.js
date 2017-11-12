@@ -16,7 +16,15 @@ app.controller('MainController', ['$scope', '$location', '$http',function($scope
     var init = function(){
         //console.log("primer get");
         $http.get('http://localhost:9090/users/logged').then(function(response){
-            $scope.user = response.data.userAuthentication.details;
+            console.log(response.data);
+            responseData = response.data.userAuthentication.details;
+            if ($scope.user == null) {$scope.user={};}
+            $scope.user = $scope.joinObjects($scope.user,responseData);
+
+            userInfo = $scope.getUserInfo(responseData.email);
+            console.log("Info en server");
+            console.log(userInfo);
+            
             //console.log($scope.user);
         });
         //console.log("segundo get");
@@ -39,10 +47,23 @@ app.controller('MainController', ['$scope', '$location', '$http',function($scope
         console.log = 'Se ha producido un error';
     });*/
 
-    $scope.getUserInfo = function() {
-        $http.get('http://localhost:9090/users/logged').then(function(response){
-            //console.log(response.data);
-            $scope.user = response.data.userAuthentication.details;
+    $scope.getUserInfo = function(mail) {
+        $http({
+            method: 'POST',
+            url: 'http://localhost:9090/users/byMail/',
+            data: {
+                email: mail
+            }
+        })
+        .then(function(res) {
+            console.log("respuesta");
+            console.log(res.data);
+            if ($scope.user == null) {$scope.user={};}
+            $scope.user = $scope.joinObjects($scope.user,res.data);
+        })
+        .catch(function(error) {
+            console.log("Logout error : ", error);
+            return null;
         });
     };
 
@@ -54,12 +75,16 @@ app.controller('MainController', ['$scope', '$location', '$http',function($scope
         .then(function(res) {
             console.log($scope.user);
             $scope.user = null;
-            console.log($scope.user);
         })
         .catch(function(error) {
 			console.log("Logout error : ", error);
 		});
-	};
+    };
+    
+    $scope.joinObjects = function(obj1,obj2){
+        for (var attrname in obj2) { obj1[attrname] = obj2[attrname]; }
+        return obj1;
+    };
 
 
     /*$scope.logout = function() {

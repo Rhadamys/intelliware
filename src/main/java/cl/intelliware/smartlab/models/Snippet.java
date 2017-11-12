@@ -30,7 +30,7 @@ public class Snippet {
     @NotNull
     private String code;
 
-    @NotNull
+    @Column
     private Date updatedAt;
 
     @PreUpdate

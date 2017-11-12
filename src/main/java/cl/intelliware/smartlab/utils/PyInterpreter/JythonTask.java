@@ -1,14 +1,6 @@
-package cl.intelliware.smartlab.utils;
+package cl.intelliware.smartlab.utils.PyInterpreter;
 
-import cl.intelliware.smartlab.models.TestCase;
-
-import java.util.concurrent.Callable;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.TimeoutException;
-
+import org.python.core.PyException;
 import org.python.util.PythonInterpreter;
 import org.python.core.*;
 
@@ -16,16 +8,18 @@ import java.io.ByteArrayOutputStream;
 import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.Properties;
+import java.util.concurrent.Callable;
 
-public class PyInterpreter {
+public class JythonTask implements Callable<String> {
+    private String code;
+    private String input;
     private PythonInterpreter interpreter;
     private ByteArrayOutputStream outputStream;
-    private String code;
-    private TestCase[] testCases;
 
-    public PyInterpreter(String code){
+
+    public JythonTask(String code, String input){
         this.code = code;
-        //this.testCases = testCases;
+        this.input = input;
 
         this.interpreter = createInterpreter();
 
@@ -46,34 +40,10 @@ public class PyInterpreter {
         return new PythonInterpreter();
     }
 
-    public String run(String input){
+    @Override
+    public String call() throws PyException{
         interpreter.setIn(new StringReader(input));
-        String output = null;
-
-        try {
-            interpreter.exec(this.code);
-            output = new String(outputStream.toByteArray());
-            System.out.println(output);
-        }
-        catch (Exception e){
-            System.out.println(e);
-        }
-
-        return output.trim();
-    }
-
-    public String run(){
-        return this.run("");
-    }
-
-    public void runTestCases(){
-        for (TestCase testCase:testCases) {
-            String output = run(testCase.getInput());
-            System.out.println(output);
-        }
-    }
-
-    public void setTestCases(TestCase[] testCases) {
-        this.testCases = testCases;
+        interpreter.exec(this.code);
+        return new String(outputStream.toByteArray());
     }
 }

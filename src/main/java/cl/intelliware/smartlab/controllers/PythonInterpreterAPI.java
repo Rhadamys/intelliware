@@ -1,23 +1,27 @@
 package cl.intelliware.smartlab.controllers;
 
-import cl.intelliware.smartlab.utils.PyInterpreter;
-import cl.intelliware.smartlab.models.Submission;
-import cl.intelliware.smartlab.repositories.SubmissionRepository;
+import cl.intelliware.smartlab.utils.PyInterpreter.PyInterpreter;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping(path="/python")
+@RequestMapping(path="/python", produces="application/json")
 public class PythonInterpreterAPI
 {
     @PostMapping(path = "/")
-    public @ResponseBody Void postSubmission(@RequestBody PythonRequest request){
+    public @ResponseBody PythonResponse postSubmission(@RequestBody PythonRequest request){
         PyInterpreter interpreter = new PyInterpreter(request.getCode());
 
-        interpreter.run();
-
-        return null;
+        String response;
+        try {
+            response = interpreter.run();
+        }catch(Exception ex){
+            ex.printStackTrace();
+            response = ex.getMessage();
+        }
+        PythonResponse objResponse = new PythonResponse();
+        objResponse.setResponse(response.trim());
+        return objResponse;
     }
     @GetMapping(path="/")
     public @ResponseBody String test(){
@@ -41,5 +45,17 @@ class PythonRequest{
 
     public void setCode(String code) {
         this.code = code;
+    }
+}
+
+class PythonResponse{
+    private String response;
+
+    public String getResponse() {
+        return response;
+    }
+
+    public void setResponse(String response) {
+        this.response = response;
     }
 }
