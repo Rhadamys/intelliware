@@ -59,7 +59,7 @@ public class PyInterpreter {
             System.out.println(e);
         }
 
-        return output;
+        return output.trim();
     }
 
     public String run(){
