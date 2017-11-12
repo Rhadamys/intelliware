@@ -1,8 +1,6 @@
 package cl.intelliware.smartlab.models;
 
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
-import org.springframework.data.annotation.CreatedDate;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -16,7 +14,7 @@ public class Problem {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "problem_id")
-    private long id;
+    private long problemId;
 
     @NotNull
     private String title;
@@ -24,17 +22,18 @@ public class Problem {
     @NotNull
     private String statement;
 
-    @CreationTimestamp
+    @NotNull
     private Date publishedAt;
 
     @NotNull
     private Date deadline;
 
-    @UpdateTimestamp
-    private Date updateAt;
+    @NotNull
+    private Date updatedAt;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "teacher_id")
+    @JsonIgnore
     private User teacher;
 
     @OneToMany(
@@ -49,23 +48,65 @@ public class Problem {
             cascade = CascadeType.ALL,
             orphanRemoval = true
     )
-
+    @JsonIgnore
     private Set<Assignment> assignments;
 
-    public long getId() {
-        return id;
+    @PrePersist
+    void onCreate() {
+        this.publishedAt = new Date();
+        this.updatedAt = this.publishedAt;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    @PreUpdate
+    void onUpdate() {
+        this.updatedAt = new Date();
     }
 
-    public String getTitle() {
-        return title;
-    }
+    public Problem() {}
 
-    public void setTitle(String title) {
+    public Problem(String title, String statement, Date deadline, User teacher ){
         this.title = title;
+        this.statement = statement;
+        this.deadline = deadline;
+        this.assignments = new HashSet<>();
+        this.testCases = new HashSet<>();
+        this.teacher = teacher;
+    }
+
+    public String getTitle() { return title; }
+
+    public void setTitle(String title) { this.title = title; }
+
+    public Set<Assignment> getAssignments() {
+        return assignments;
+    }
+
+    public void addAssignment(Assignment assignment) {
+        this.assignments.add(assignment);
+    }
+
+    public Set<TestCase> getTestCases() {
+        return testCases;
+    }
+
+    public void addTestCase(TestCase testCase) {
+        this.testCases.add(testCase);
+    }
+
+    public User getTeacher() {
+        return teacher;
+    }
+
+    public void setTeacher(User teacher) {
+        this.teacher = teacher;
+    }
+
+    public long getProblemId() {
+        return problemId;
+    }
+
+    public void setProblemId(long problem_id) {
+        this.problemId = problem_id;
     }
 
     public String getStatement() {
@@ -100,42 +141,4 @@ public class Problem {
         this.updatedAt = updatedAt;
     }
 
-    public User getTeacher() {
-        return teacher;
-    }
-
-    public void setTeacher(User teacher) {
-        this.teacher = teacher;
-    }
-
-    public Set<TestCase> getTestCases() {
-        return testCases;
-    }
-
-    public void setTestCases(Set<TestCase> testCases) {
-        this.testCases = testCases;
-    }
-
-    public Set<Assignment> getAssignments() {
-        return assignments;
-    }
-
-    public void setAssignments(Set<Assignment> assignments) {
-        this.assignments = assignments;
-    }
-
-    @Override
-    public String toString() {
-        return "Problem{" +
-                "id=" + id +
-                ", title='" + title + '\'' +
-                ", statement='" + statement + '\'' +
-                ", publishedAt=" + publishedAt +
-                ", deadline=" + deadline +
-                ", updateAt=" + updateAt +
-                ", teacher=" + teacher +
-                ", testCases=" + testCases +
-                ", assignments=" + assignments +
-                '}';
-    }
 }

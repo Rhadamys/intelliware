@@ -29,7 +29,7 @@ public class StudentController
     @GetMapping(path="/")
     public @ResponseBody Iterable<User> getAllStudents()
     {
-        return userRepository.findUsersByRolesIs(studentRole);
+        return userRepository.findUsersByRolesContains(studentRole);
     }
 
     @GetMapping(path="/{id}")

@@ -1,4 +1,4 @@
-var app = angular.module('VoteClick', ['ngRoute', 'ui.codemirror']);
+var app = angular.module('Smartlab', ['ngRoute', 'ui.codemirror', 'ui.bootstrap']);
 
 app.config(function($routeProvider){
     $routeProvider
@@ -18,9 +18,13 @@ app.config(function($routeProvider){
             templateUrl: 'js/views/contact.html',
             controller: 'MainController'
         })
+        .when('/problemas', {
+            templateUrl: 'js/views/problems/list.html',
+            controller: 'ListProblemsController'
+        })
         .when('/problemas/nuevo', {
-            templateUrl: 'js/views/problem.html',
-            controller: 'ProblemController'
+            templateUrl: 'js/views/problems/create.html',
+            controller: 'CreateProblemController'
         })
         .otherwise({
             redirectTo: '/'

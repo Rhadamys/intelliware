@@ -100,17 +100,16 @@
                     </div>
                     <div class="well well-sm" ng-if="query && query.length > 0">
                         <div class="text-center" ng-if="!matchQuery"><b>La búsqueda no arrojó resultados</b></div>
-                        <span class="label label-success assignment" ng-repeat="student in students | filter: filterFunction | orderBy: 'user.firstName' ">
-                            {{ student.user.firstName }} {{ student.user.lastName  }}
+                        <span class="label label-success assignment" ng-repeat="student in students | filter: filterFunction | orderBy: 'firstName' ">
+                            {{ student.firstName }} {{ student.lastName  }}
                             <a class="assignment-close" ng-click="assignStudent(student, true)">+</a>
                         </span>
                     </div>
                     <h4 class="text-center">Estudiantes de la asignación actual</h4>
                     <div class="well well-sm">
                         <div class="text-center" ng-if="problem.assignments.length == 0"><b>Aún no se han seleccionado estudiantes</b></div>
-                        <span class="label label-default assignment" ng-repeat="student in problem.assignments"
-                              ng-style="{ 'background-color': getColor(student.section.semester) }">
-                            {{ student.user.firstName }} {{ student.user.lastName  }}
+                        <span class="label label-default assignment" ng-repeat="student in problem.assignments">
+                            {{ student.firstName }} {{ student.lastName  }}
                             <a class="assignment-close" ng-click="removeAssignment($index)">&times;</a>
                         </span>
                     </div>

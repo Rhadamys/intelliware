@@ -1,11 +1,13 @@
 package cl.intelliware.smartlab.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Null;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -18,6 +20,7 @@ public class Assignment {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "student_id")
+    @JsonIgnore
     private User student;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -39,6 +42,17 @@ public class Assignment {
             orphanRemoval = true
     )
     private Set<Submission> submissions;
+
+    public Assignment() { }
+
+    public Assignment(User student,
+                      Date deadline,
+                      Problem problem) {
+        this.student = student;
+        this.deadline = deadline;
+        this.problem = problem;
+        this.submissions = new HashSet<>();
+    }
 
     public long getId() {
         return id;

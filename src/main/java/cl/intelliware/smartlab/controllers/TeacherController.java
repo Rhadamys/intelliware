@@ -28,7 +28,7 @@ public class TeacherController {
     @GetMapping(path = "/")
     public @ResponseBody
     Iterable<User> getAllTeachers() {
-        return userRepository.findUsersByRolesIs(role);
+        return userRepository.findUsersByRolesContains(role);
     }
 
     @GetMapping(path = "/{id}")

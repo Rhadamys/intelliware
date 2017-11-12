@@ -68,12 +68,12 @@ textarea {
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: flex-end;
-    margin-top: 0.75em !important;
+    justify-content: flex-start;
+    margin-top: 0.9em !important;
 }
 
 .test-case-options > .btn {
-    margin-left: 0.5em;
+    margin-right: 0.5em;
 }
 
 .assignment {
@@ -83,6 +83,35 @@ textarea {
 .assignment-close {
     color: white;
     cursor: pointer;
+}
+
+.well .label {
+    display:inline-block;
+    padding-top:0;
+    padding-bottom:0;
+    line-height:1.5em;
+}
+
+.trim-text {
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.problem-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.info {
+    color: #777777;
+    height: 70vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 /* Otros elementos */
