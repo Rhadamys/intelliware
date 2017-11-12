@@ -1,0 +1,42 @@
+<div class="container" ng-controller="SnippetsController">
+    <div class="col-md-8 col-md-offset-2">
+        <ol class="breadcrumb">
+            <li><a href="#/">Inicio</a></li>
+            <li>Snippets</li>
+            <a href="#!/editor" class="btn btn-xs btn-success pull-right">
+                Crear Snippet <i class="glyphicon glyphicon-plus"></i>
+            </a>
+        </ol>
+        <div class="info" ng-if="snippets.length === 0">
+            <i class="fa fa-file-text-o" aria-hidden="true" style="font-size: 10em"></i>
+            <h3 class="text-center">Aún no se han creado snippets...</h3>
+        </div>
+        <div class="panel panel-default" ng-repeat="snippet in snippets.slice((pagination.currentPage - 1) * pagination.itemsPerPage, pagination.currentPage * pagination.itemsPerPage)">
+            <div class="panel-body">
+                <div class="problem-header">
+                    <h4><b>{{ snippet.title }}</b></h4>
+                </div>
+                <p class="trim-text">{{ snippet.description }}</p>
+            </div>
+            <div class="panel-footer" style="display: flex; justify-content: flex-end">
+                <a class="btn btn-sm btn-default" ng-click="loadSnippetToEditor(snippet.id)">
+                    <i class="glyphicon glyphicon-eye-open"></i>&ensp;Ver detalles...
+                </a>
+            </div>
+        </div>
+        <ul uib-pagination
+            class="pull-right"
+            boundary-links="true"
+            direction-links="true"
+            first-text="Primero"
+            items-per-page="pagination.itemsPerPage"
+            last-text="Último"
+            max-size="pagination.maxSize"
+            next-text="&rsaquo;"
+            ng-if="snippets.length > 0"
+            ng-model="pagination.currentPage"
+            previous-text="&lsaquo;"
+            rotate="false"
+            total-items="snippets.length"></ul>
+    </div>
+</div>
