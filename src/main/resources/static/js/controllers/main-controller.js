@@ -16,7 +16,7 @@ app.controller('MainController', ['$scope', '$location', '$http',function($scope
     var init = function(){
         //console.log("primer get");
         $http.get('http://localhost:9090/users/logged').then(function(response){
-            $scope.user = response.data;
+            $scope.user = response.data.userAuthentication.details;
             //console.log($scope.user);
         });
         //console.log("segundo get");
@@ -42,7 +42,7 @@ app.controller('MainController', ['$scope', '$location', '$http',function($scope
     $scope.getUserInfo = function() {
         $http.get('http://localhost:9090/users/logged').then(function(response){
             //console.log(response.data);
-            $scope.user = response.data;
+            $scope.user = response.data.userAuthentication.details;
         });
     };
 
@@ -52,7 +52,9 @@ app.controller('MainController', ['$scope', '$location', '$http',function($scope
             url: 'http://localhost:9090/logout',
         })
         .then(function(res) {
+            console.log($scope.user);
             $scope.user = null;
+            console.log($scope.user);
         })
         .catch(function(error) {
 			console.log("Logout error : ", error);
