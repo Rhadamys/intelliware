@@ -1,5 +1,7 @@
 package cl.intelliware.smartlab.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
@@ -23,11 +25,19 @@ public class TestCase {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "problem_id")
+    @JsonIgnore
     private Problem problem;
 
-    public TestCase(String input, String output) {
+    public TestCase() { }
+
+    public TestCase(String input,
+                    String output,
+                    String description,
+                    Problem problem) {
         this.input = input;
         this.output = output;
+        this.description = description;
+        this.problem = problem;
     }
 
     public long getId() {

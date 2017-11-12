@@ -10,8 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(path="/teachers")
-public class TeacherController
-{
+public class TeacherController {
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
 
@@ -26,20 +25,21 @@ public class TeacherController
     }
 
 
-    @GetMapping(path="/")
-    public @ResponseBody Iterable<User> getAllTeachers()
-    {
-        return userRepository.findUsersByRolesIs(role);
+    @GetMapping(path = "/")
+    public @ResponseBody
+    Iterable<User> getAllTeachers() {
+        return userRepository.findUsersByRolesContains(role);
     }
 
-    @GetMapping(path="/{id}")
-    public @ResponseBody User getStudent(@PathVariable("id") Integer id)
-    {
+    @GetMapping(path = "/{id}")
+    public @ResponseBody
+    User getStudent(@PathVariable("id") Integer id) {
         long lid = id.longValue();
         User user = userRepository.findOne(lid);
-        if (user.getRoles().contains(role)){
+        if (user.getRoles().contains(role)) {
             return user;
         }
         return null;
     }
 }
+

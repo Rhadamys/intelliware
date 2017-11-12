@@ -1,0 +1,135 @@
+<div class="container" ng-controller="CreateProblemController">
+    <div class="col-md-8 col-md-offset-2">
+        <ol class="breadcrumb">
+            <li><a href="#/">Inicio</a></li>
+            <li><a href="#/problems">Enunciados</a></li>
+            <li class="active">Nuevo enunciado</li>
+        </ol>
+        <form>
+            <div class="panel panel-default">
+                <div class="panel-heading text-center">
+                    <h4>Nuevo enunciado</h4>
+                </div>
+                <div class="panel-body">
+                    <div class="form-group row">
+                        <div class="col-md-7" ng-class="{ 'has-error': problem.title === '' }">
+                            <label class="control-label" for="title">
+                                Título: <warn ng-if="problem.title === ''">(Ingrese un título válido)</warn>
+                            </label>
+                            <input type="text" class="form-control" id="title" placeholder="Ingrese el título del enunciado..." ng-model="problem.title">
+                        </div>
+                        <div class="col-md-5">
+                            <label class="control-label" for="deadline">Fecha límite:</label>
+                            <input type="datetime-local" class="form-control" id="deadline" ng-model="problem.deadline" min="{{ today() }}">
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{ 'has-error': problem.statement === '' }">
+                        <label class="control-label" for="statement">
+                            Enunciado: <warn ng-if="problem.statement === ''">(Ingrese un texto válido)</warn>
+                        </label>
+                        <textarea class="form-control" rows="5" id="statement" ng-model="problem.statement"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading text-center">
+                    <h4>Casos de prueba</h4>
+                </div>
+                <div class="panel-body test-case" ng-repeat="testCase in problem.testCases">
+                    <div class="col-md-6" ng-class="{ 'has-error': testCase.input === '' }">
+                        <label class="control-label" for="entrada">
+                            Entrada: <warn ng-if="testCase.input === ''">(Ingrese una entrada válida)</warn>
+                        </label>
+                        <textarea class="form-control" rows="3" id="entrada" ng-model="problem.testCases[$index].input"></textarea>
+                        <div class="test-case-options">
+                            <button class="btn btn-sm btn-default pull-right" type="button" ng-click="resetTestCase($index)">
+                                Reiniciar <i class="glyphicon glyphicon glyphicon-refresh"></i>
+                            </button>
+                            <button class="btn btn-sm btn-danger pull-right" type="button" ng-click="removeTestCase($index)">
+                                Quitar <i class="glyphicon glyphicon-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group" ng-class="{ 'has-error': testCase.output === '' }">
+                            <label class="control-label" for="salida">
+                                Salida: <warn ng-if="testCase.output === ''">(Ingrese una salida válida)</warn>
+                            </label>
+                            <input type="text" class="form-control" id="salida" ng-model="problem.testCases[$index].output">
+                        </div>
+                        <div class="form-group" ng-class="{ 'has-error': testCase.description === '' }">
+                            <label class="control-label" for="description">
+                                Descripción: <warn ng-if="testCase.description === ''">(Ingrese una descripción válida)</warn>
+                            </label>
+                            <input type="text" class="form-control" id="description" ng-model="problem.testCases[$index].description">
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-footer">
+                    <button class="btn btn-success" type="button" ng-click="addTestCase()">
+                        Agregar <i class="glyphicon glyphicon-plus"></i>
+                    </button>
+                    <button class="btn btn-default" type="button" ng-click="resetTestCases()">
+                        Reiniciar <i class="glyphicon glyphicon-refresh"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading text-center">
+                    <h4>Asignaciones</h4>
+                </div>
+                <div class="panel-body">
+                    <div class="row" style="display: flex; flex-direction: row; align-items: center;">
+                        <div class="col-md-8">
+                            <div class="form-group well well-sm">
+                                <label class="control-label" for="search">Buscar estudiantes:</label>
+                                <input type="text" id="search" class="form-control" ng-model="query"
+                                       ng-disabled="students.length  === 0" placeholder="Buscar por nombre de estudiante...">
+                            </div>
+                        </div>
+                        o
+                        <div class="col-md-4">
+                            <div class="form-group well well-sm">
+                                <label class="control-label" for="sections">Asignar a una sección:</label>
+                                <select class="form-control" id="sections" ng-disabled="students.length  === 0" ng-change="assignSection()"
+                                        ng-model="selectedSection" ng-options="semester for semester in sections">
+                                    <option value="">-- Elegir sección --</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="well well-sm" ng-if="query && query.length > 0">
+                        <div class="text-center" ng-if="!matchQuery"><b>La búsqueda no arrojó resultados</b></div>
+                        <span class="label label-success assignment" ng-repeat="student in students | filter: filterFunction | orderBy: 'firstName' ">
+                            {{ student.firstName }} {{ student.lastName  }}
+                            <a class="assignment-close" ng-click="assignStudent(student, true)">+</a>
+                        </span>
+                    </div>
+                    <h4 class="text-center">Estudiantes de la asignación actual</h4>
+                    <div class="well well-sm">
+                        <div class="text-center" ng-if="problem.assignments.length == 0"><b>Aún no se han seleccionado estudiantes</b></div>
+                        <span class="label label-default assignment" ng-repeat="student in problem.assignments">
+                            {{ student.firstName }} {{ student.lastName  }}
+                            <a class="assignment-close" ng-click="removeAssignment($index)">&times;</a>
+                        </span>
+                    </div>
+                </div>
+                <div class="panel-footer">
+                    <button class="btn btn-success" type="button" ng-click="assignAll()">
+                        Asignar todos
+                    </button>
+                    <button class="btn btn-default" type="button" ng-click="resetAssignments()">
+                        Reiniciar <i class="glyphicon glyphicon-refresh"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-footer">
+                    <button class="btn btn-success" type="button" ng-click="send()">
+                        Enviar
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
