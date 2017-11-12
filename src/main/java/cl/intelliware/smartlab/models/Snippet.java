@@ -1,11 +1,10 @@
 package cl.intelliware.smartlab.models;
 
-import org.joda.time.DateTime;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
-import java.util.Set;
 
 @Entity
 @Table(name="Snippets")
@@ -19,6 +18,7 @@ public class Snippet {
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
+    @JsonIgnore
     private User user;
 
     @NotNull

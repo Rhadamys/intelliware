@@ -10,6 +10,6 @@ import java.util.List;
 @Transactional
 public interface UserRepository extends CrudRepository<User, Long> {
 
-    List<User> findUsersByRolesIs(Role role);
+    List<User> findUsersByRolesContains(Role role);
     User findByMail(String email);
 }

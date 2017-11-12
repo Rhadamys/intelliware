@@ -2,11 +2,10 @@ package cl.intelliware.smartlab.controllers;
 
 import cl.intelliware.smartlab.models.User;
 import cl.intelliware.smartlab.repositories.UserRepository;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+
+import java.security.Principal;
 
 @RestController
 @RequestMapping(path="/users")
@@ -31,5 +30,10 @@ public class UserController
         long lid = id.longValue();
         return userRepository.findOne(lid);
     }
+
+    @RequestMapping("/logged")
+	public Principal loggedUserInfo(Principal principal) {
+		return principal;
+	}
 
 }

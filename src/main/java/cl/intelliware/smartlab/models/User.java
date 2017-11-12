@@ -44,7 +44,6 @@ public class User {
             joinColumns = @JoinColumn(name = "teacher_id"),
             inverseJoinColumns = @JoinColumn(name = "section_id")
     )
-    @JsonIgnoreProperties("teachers")
     private Set<Section> sectionsTeaching;
 
     @ManyToMany(cascade = CascadeType.ALL)
@@ -53,19 +52,15 @@ public class User {
             joinColumns = @JoinColumn(name = "student_id"),
             inverseJoinColumns = @JoinColumn(name = "section_id")
     )
-    @JsonIgnoreProperties("students")
     private Set<Section> sectionsAttending;
 
     @OneToMany(mappedBy = "user")
-    @JsonIgnoreProperties("user")
     private List<Snippet> snippets;
 
     @OneToMany(mappedBy = "teacher")
-    @JsonIgnoreProperties("teacher")
     private List<Problem> problems;
 
     @OneToMany(mappedBy = "student")
-    @JsonIgnoreProperties("student")
     private List<Assignment> assignments;
 
     // METHODS

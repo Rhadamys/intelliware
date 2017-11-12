@@ -1,5 +1,7 @@
 package cl.intelliware.smartlab.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Set;
@@ -16,9 +18,11 @@ public class Section {
     private String semester;
 
     @ManyToMany(mappedBy = "sectionsAttending")
+    @JsonIgnore
     private Set<User> students;
 
     @ManyToMany(mappedBy = "sectionsTeaching")
+    @JsonIgnore
     private Set<User> teachers;
 
     public long getId() {

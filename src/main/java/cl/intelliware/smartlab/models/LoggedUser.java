@@ -1,8 +1,8 @@
 package cl.intelliware.smartlab.models;
 
 import org.springframework.security.oauth2.provider.OAuth2Authentication;
+
 import java.io.IOException;
-import java.security.Principal;
 
 public class LoggedUser
 {
