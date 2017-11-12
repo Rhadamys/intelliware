@@ -177,7 +177,7 @@ public class User {
         this.assignments = assignments;
     }
 
-    @Override
+    /*@Override
     public String toString() {
         return "User{" +
                 "id=" + id +
@@ -192,7 +192,7 @@ public class User {
                 ", problems=" + problems +
                 ", assignments=" + assignments +
                 '}';
-    }
+    }*/
 }
 
 

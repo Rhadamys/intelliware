@@ -2,9 +2,11 @@ package cl.intelliware.smartlab.utils.PyInterpreter;
 
 import org.python.core.PyException;
 import org.python.util.PythonInterpreter;
+import org.python.core.*;
 
 import java.io.ByteArrayOutputStream;
 import java.io.StringReader;
+import java.util.ArrayList;
 import java.util.Properties;
 import java.util.concurrent.Callable;
 

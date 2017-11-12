@@ -37,7 +37,7 @@
 
     <title>SmartLab - {{ title }}</title>
 </head>
-<body>
+<body ng-app="VoteClick" ng-controller="MainController">
     <nav class="navbar navbar-default navbar-static-top">
         <div class="container">
             <div class="navbar-header">
@@ -53,8 +53,8 @@
 
                 <!-- Right Side Of Navbar -->
                 <ul class="nav navbar-right">
-                    <a href="#" class="btn navbar-btn" role="button">Iniciar sesión</a>
-                    <a href="#" class="btn navbar-btn" role="button">Registrarse</a>
+                    <a href="google/login" class="btn navbar-btn" role="button">Iniciar Sesión</a>
+                    <a class="btn btn-info" href="#" ng-click="logout()">Cerrar Sesión</a>
                 </ul>
             </div>
         </div>
