@@ -1,5 +1,6 @@
 package cl.intelliware.smartlab.models;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
@@ -22,6 +23,7 @@ public class Problem {
     @NotNull
     private String statement;
 
+    @JsonFormat(pattern = "dd/MM/yyyy' a las 'hh:mm")
     @NotNull
     private Date publishedAt;
 

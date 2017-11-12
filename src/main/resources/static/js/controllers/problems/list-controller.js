@@ -1,13 +1,16 @@
 app.controller('ListProblemsController', ['$scope', '$http', function($scope, $http) {
     $scope.problems = [];
+    $scope.problemPage = [];
 
-    $scope.currentPage = 1;
-    $scope.itemsPerPage = 5;
-    $scope.maxSize = 5;
+    $scope.pagination = {
+        currentPage: 1,
+        itemsPerPage: 5,
+        maxSize: 5
+    }
 
     // Initial data
     $scope.getProblems = function() {
-        $http.get("http://localhost:9090/problems/all", $scope.problem)
+        $http.get("http://localhost:9090/problems/", $scope.problem)
             .then(function successCallback(response) {
                 $scope.problems = response.data;
             }, function errorCallback(response) {

@@ -140,7 +140,6 @@ app.controller('CreateProblemController', ['$scope', '$http', '$window', functio
     };
 
     $scope.send = function () {
-        console.log($scope.problem);
         $http.post("http://localhost:9090/problems", $scope.problem)
             .then(function successCallback() {
                 $window.history.back();
