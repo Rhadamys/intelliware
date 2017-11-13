@@ -27,7 +27,7 @@ public class SnippetController
     public @ResponseBody
     Iterable<Snippet> getAllSnippets()
     {
-        return snippetRepository.findAll();
+        return snippetRepository.findAllByOrderByIdDesc();
     }
 
     @GetMapping(path="/{id}")

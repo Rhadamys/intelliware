@@ -20,7 +20,35 @@ app.config(function($routeProvider){
         .when('/problemas/nuevo', {
             templateUrl: 'js/views/problems/create.html'
         })
+        .when('/snippets', {
+            templateUrl: 'js/views/snippets/list.html',
+            controller: 'SnippetsController'
+        })
+        .when('/snippets/detail', {
+            templateUrl: 'js/views/snippets/detail.html',
+            controller: 'SnippetsController'
+        })
         .otherwise({
             redirectTo: '/'
         });
 });
+
+app.service('snippetService', function() {
+    var snippet = null;
+  
+    var setSnippet = function(newObj) {
+        snippet = newObj;
+    };
+  
+    var popSnippet = function(){
+        poppedSnippet = snippet;
+        snippet = null;
+        return poppedSnippet;
+    };
+  
+    return {
+      setSnippet: setSnippet,
+      popSnippet: popSnippet
+    };
+  
+  });

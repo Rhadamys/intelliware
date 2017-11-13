@@ -35,9 +35,7 @@ public class UserController
     @PostMapping(path="/byMail")
     public @ResponseBody User getUserByMail(@RequestBody HashMap<String, Object> request)
     {
-        System.out.println(request.get("email").toString());
         User user = userRepository.findByMail(request.get("email").toString());
-        System.out.println(user);
         return user;
     }
 
