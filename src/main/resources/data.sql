@@ -1,8 +1,8 @@
-INSERT INTO users (first_name, last_name, mail, rut) VALUES ("Mario", "Alvarez", "mario.alvarez@usach.cl", "19.787.283-3");
-INSERT INTO users (first_name, last_name, mail, rut) VALUES ("Natalia", "Guzman", "natalia.guzman@usach.cl", "19.878.234-2");
-INSERT INTO users (first_name, last_name, mail, rut) VALUES ("Gerardo", "Zuñiga", "gerardo.zuniga@usach.cl", "19.543.523-4");
-INSERT INTO users (first_name, last_name, mail, rut) VALUES ("Javier", "Vasquez", "javier.vasquez@usach.cl", "18.424.212-3");
-INSERT INTO users (first_name, last_name, mail, rut) VALUES ("Joaquin", "Jara", "joaquin.jara@usach.cl", "19.680.541-k");
+INSERT INTO users (first_name, last_name, mail, rut) VALUES ("Maria", "Camus", "maria.camus@usach.cl", "19.787.283-3");
+INSERT INTO users (first_name, last_name, mail, rut) VALUES ("Nacho", "Ortiz", "nacho.ortiz@usach.cl", "19.878.234-2");
+INSERT INTO users (first_name, last_name, mail, rut) VALUES ("Tamara", "Zuñiga", "tamara.zuniga@usach.cl", "19.543.523-4");
+INSERT INTO users (first_name, last_name, mail, rut) VALUES ("Andrea", "Martinez", "andrea.martinez@usach.cl", "18.424.212-3");
+INSERT INTO users (first_name, last_name, mail, rut) VALUES ("Juan", "Jara", "juan.jara@usach.cl", "19.680.541-k");
 INSERT INTO users (first_name, last_name, mail, rut) VALUES ("Rodrigo", "Scheel", "rodrigo.scheel@usach.cl", "19.321.123-0");
 INSERT INTO users (first_name, last_name, mail, rut) VALUES ("Ruth", "Marin", "ruth.marin@usach.cl", "18.784.983-1");
 INSERT INTO users (first_name, last_name, mail, rut) VALUES ("Jose", "Bahamondes", "jose.bahamondes@usach.cl", "19.563.112-1");
