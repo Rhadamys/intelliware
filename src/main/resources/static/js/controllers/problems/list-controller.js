@@ -1,4 +1,22 @@
-app.controller('ListProblemsController', ['$scope', '$http', function($scope, $http) {
+app.factory('ProblemService', function() {
+    var created = false;
+    return {
+        problemCreated: function() {
+            console.log("Informando que fue creado");
+            created = true;
+            console.log("Nuevo estado: " + created);
+        },
+        isProblemCreated: function () {
+            const wasCreated = created;
+            created = false;
+            console.log(wasCreated);
+            return wasCreated;
+        }
+    }
+});
+
+app.controller('ListProblemsController', ['$scope', '$http', 'ProblemService',
+    function($scope, $http, problemService) {
     $scope.problems = [];
     $scope.problemPage = [];
 
@@ -6,7 +24,7 @@ app.controller('ListProblemsController', ['$scope', '$http', function($scope, $h
         currentPage: 1,
         itemsPerPage: 5,
         maxSize: 5
-    }
+    };
 
     // Initial data
     $scope.getProblems = function() {
@@ -18,4 +36,6 @@ app.controller('ListProblemsController', ['$scope', '$http', function($scope, $h
             });
     };
     $scope.getProblems();
+
+    $scope.showAlertSuccess = problemService.isProblemCreated();
 }]);

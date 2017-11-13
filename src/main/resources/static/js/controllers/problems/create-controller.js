@@ -1,16 +1,64 @@
-app.controller('CreateProblemController', ['$scope', '$http', '$window', function ($scope, $http, $window) {
-    $scope.today = function () {
-        var today = new Date();
-        var year = today.getFullYear();
-        var month = ('0' + (today.getMonth() + 1)).substr(-2);
-        var day = ('0' + (today.getDate())).substr(-2);
-        return year + '-' + month + '-' + day + 'T00:00';
+app.controller('CreateProblemController', ['$scope', '$http', '$window', 'ProblemService',
+    function ($scope, $http, $window, problemService) {
+    $scope.problemService = problemService;
+    $scope.calendar = {
+        opened: false,
+        defaultTime: '23:59:59',
+        buttonBar: {
+            show: true,
+            now: {
+                show: false
+            },
+            today: {
+                show: true,
+                text: 'Hoy',
+                cls: 'btn-sm btn-default'
+            },
+            clear: {
+                show: true,
+                text: 'Borrar',
+                cls: 'btn-sm btn-default'
+            },
+            date: {
+                show: true,
+                text: 'Fecha',
+                cls: 'btn-sm btn-default'
+            },
+            time: {
+                show: true,
+                text: 'Hora',
+                cls: 'btn-sm btn-default'
+            },
+            close: {
+                show: true,
+                text: 'Cerrar',
+                cls: 'btn-sm btn-default'
+            },
+            cancel: {
+                show: false,
+                text: 'Cancelar',
+                cls: 'btn-sm btn-default'
+            }
+        },
+        datePicker: {
+            minDate: new Date()
+        },
+        timePicker: {
+            showMeridian: false
+        },
+        saveAs: 'json'
     };
 
     $scope.matchQuery = false;
+    $scope.showAlertForm = false;
+    $scope.showAlertService = false;
     $scope.students = [];
 
     $scope.problem = {
+        deadline: {
+            date: '',
+            time: ''
+        },
         testCases: [
             {
                 input: null,
@@ -140,12 +188,18 @@ app.controller('CreateProblemController', ['$scope', '$http', '$window', functio
     };
 
     $scope.send = function () {
-        $http.post("http://localhost:9090/problems", $scope.problem)
-            .then(function successCallback() {
-                $window.history.back();
-            }, function errorCallback() {
-                alert('Su solicitud no pudo ser procesada. Intente nuevamente en unos instantes.');
-            });
+        if($scope.form.$error.required) {
+            $scope.showAlertForm = true;
+            $window.scrollTo(0, 0);
+        } else {
+            $http.post("http://localhost:9090/problems", $scope.problem)
+                .then(function successCallback() {
+                    $scope.problemService.problemCreated();
+                    $window.history.back();
+                }, function errorCallback() {
+                    $scope.showAlertService = true;
+                });
+        }
     };
 
     // Initial data
