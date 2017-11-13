@@ -1,0 +1,14 @@
+<div class="collapse navbar-collapse" id="app-navbar-collapse" style="padding-left: 10em">
+    <!-- Left Side Of Navbar -->
+    <a href="#!/" class="btn navbar-btn" ng-class="{ active: isActive('/') }" role="button">Inicio</a>
+    <a href="#!/problemas" class="btn navbar-btn" ng-class="{ active: isActive('/problemas') || isActive('/problemas/nuevo') }" role="button">Enunciados</a>
+    <a href="#!/editor" class="btn navbar-btn" ng-class="{ active: isActive('/editor') }" role="button">Editor</a>
+    <a href="#!/snippets" class="btn navbar-btn" ng-class="{ active: isActive('/snippets') }" role="button">Snippets</a>
+
+
+    <!-- Right Side Of Navbar -->
+    <ul class="nav navbar-right">
+        <img id="profile-picture" src="{{user.picture}}" class="img-circle" alt="Profile picture">
+        <a href="#" class="btn navbar-btn" ng-click="logout()" role="button">Cerrar sesión</a>
+    </ul>
+</div>

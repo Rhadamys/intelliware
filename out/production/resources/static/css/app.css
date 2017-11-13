@@ -1,0 +1,222 @@
+:root {
+    --main-color: #394041;
+    --accent-color: #EA7600;
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    background: #DDDDDD;
+}
+
+textarea {
+    resize: none;
+}
+
+/* Barra de navegación */
+.navbar {
+    background: var(--main-color) !important;
+    border: none;
+    margin-bottom: 1em;
+}
+
+.navbar-btn {
+	float: left;
+	margin-right: 0.2em;
+    border-radius: 0.3em;
+    color: white;
+}
+
+.navbar-btn:hover {
+    background: var(--accent-color) !important;
+    color: white !important;
+}
+
+.navbar-btn.active {
+    background: var(--accent-color) !important;
+    color: white !important;
+    box-shadow: none;
+}
+
+/* Paneles */
+.panel-heading {
+    background: var(--accent-color) !important;
+}
+
+.panel-heading > h4 {
+    color: white !important;
+    font-weight: bold !important;
+}
+
+.text-center > h3 {
+    font-weight: bold;
+}
+
+.panel-footer {
+    background: #CFCFCF !important;
+}
+
+.test-case {
+    padding-top: 0.75em;
+    padding-bottom: 0.75em;
+}
+
+.test-case:nth-child(odd) {
+    background-color: #F0F0F0;
+}
+
+.test-case-options {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    margin-top: 0.9em !important;
+}
+
+.test-case-options > .btn {
+    margin-right: 0.5em;
+}
+
+.assignment {
+    margin-right: 0.5em;
+}
+
+.assignment-close {
+    color: white;
+    cursor: pointer;
+}
+
+.well .label {
+    display:inline-block;
+    padding-top:0;
+    padding-bottom:0;
+    line-height:1.5em;
+}
+
+.trim-text {
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.problem-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.info {
+    color: #777777;
+    height: 70vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Otros elementos */
+a {
+    color: var(--main-color);
+}
+
+a:hover {
+    color: var(--accent-color);
+}
+
+.thumbnail {
+    background: #EEEEEE !important;
+}
+
+.img-circle {
+    padding: 1em;
+}
+
+/* Material Checkbox */
+.checkbox label {
+    padding-left: 24px;
+}
+  
+input[type="checkbox"] {
+    display: none;
+}
+    
+input[type="checkbox"] + .box:before,
+input[type="checkbox"] + .box:after {
+    transition: all .3s;
+}
+    
+input[type="checkbox"] + .box:after {
+    position: absolute;
+    left: 4px;
+    top: 3px;
+    margin-top: -5px;
+    margin-left: -4px;
+    display: inline-block;
+    content: ' ';
+    width: 20px;
+    height: 20px;
+    border: 2px solid #999;
+    border-radius: 2px;
+    background-color: #fff;
+    z-index: 1000;
+}
+    
+input[type="checkbox"]:checked + .box:after {
+    background-color: var(--main-color);
+    border-color: var(--main-color);
+}
+    
+input[type="checkbox"]:checked + .box:before {
+    transform: rotate(45deg);
+    position: absolute;
+    left: 7px;
+    top: 0px;
+    width: 6px;
+    height: 13px;
+    border-width: 2px;
+    border-style: solid;
+    border-top: 0;
+    border-left: 0;
+    border-color: #fff;
+    content: '';
+    z-index: 10000;
+}
+
+/* Botones */
+.btn-primary {
+    background-color: var(--accent-color);
+}
+
+.btn-group > .btn.active {
+    background-color: var(--main-color);
+    color: white;
+}
+
+.btn-group > .btn:hover {
+    color: gray;
+}
+
+.editor-container {
+    height: 70vh;
+    display: flex;
+    padding: 0;
+}
+
+.CodeMirror {
+    height: 100% !important;
+    width: 65% !important;
+}
+
+.console-container {
+    height: 100%;
+    width: 35%;
+}
+
+.console {
+    background-color: black;
+    color: white;
+    width: 100%;
+    height: 100%;
+    font-family: Courier, Consolas, monospace;
+    border: none;
+}
