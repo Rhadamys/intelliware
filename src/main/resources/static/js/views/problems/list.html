@@ -7,6 +7,11 @@
                 Crear enunciado <i class="glyphicon glyphicon-plus"></i>
             </a>
         </ol>
+        <div ng-if="showAlertSuccess" class="alert alert-success alert-dismissable">
+            <button href="#" class="close" data-dismiss="alert" aria-label="close"
+                    ng-click="showAlertSuccess = false">&times;</button>
+            <strong>Correcto!</strong> Se ha creado el enunciado.
+        </div>
         <div class="info" ng-if="problems.length === 0">
             <i class="fa fa-file-text-o" aria-hidden="true" style="font-size: 10em"></i>
             <h3 class="text-center">Aún no se han creado enunciados...</h3>

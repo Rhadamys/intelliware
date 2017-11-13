@@ -5,7 +5,17 @@
             <li><a href="#!/problemas">Enunciados</a></li>
             <li class="active">Nuevo enunciado</li>
         </ol>
-        <form>
+        <div ng-if="showAlertForm" class="alert alert-warning alert-dismissable">
+            <button href="#" class="close" data-dismiss="alert" aria-label="close"
+                    ng-click="showAlertForm = false">&times;</button>
+            Debe ingresar todos los campos requeridos.
+        </div>
+        <div ng-if="showAlertService" class="alert alert-error alert-dismissable">
+            <button href="#" class="close" data-dismiss="alert" aria-label="close"
+                    ng-click="showAlertService = false">&times;</button>
+            Su solicitud no pudo ser procesada. Intente nuevamente en unos instantes.
+        </div>
+        <form name="form">
             <div class="panel panel-default">
                 <div class="panel-heading text-center">
                     <h4>Nuevo enunciado</h4>
@@ -16,11 +26,29 @@
                             <label class="control-label" for="title">
                                 Título: <warn ng-if="problem.title === ''">(Ingrese un título válido)</warn>
                             </label>
-                            <input type="text" class="form-control" id="title" placeholder="Ingrese el título del enunciado..." ng-model="problem.title">
+                            <input type="text" class="form-control" id="title" placeholder="Ingrese el título del enunciado..."
+                                   ng-model="problem.title" ng-required="true">
                         </div>
                         <div class="col-md-5">
-                            <label class="control-label" for="deadline">Fecha límite:</label>
-                            <input type="datetime-local" class="form-control" id="deadline" ng-model="problem.deadline" min="{{ today() }}">
+                            <label class="control-label" for="deadline">Fecha y hora límite:</label>
+                            <div class="input-group">
+                                <input type="text"
+                                       button-bar="calendar.buttonBar"
+                                       class="form-control"
+                                       datetime-picker="dd/MM/yyyy' a las 'HH:mm"
+                                       datepicker-options="calendar.datePicker"
+                                       id="deadline"
+                                       is-open="calendar.opened"
+                                       ng-model="problem.deadline"
+                                       ng-required="true"
+                                       save-as="calendar.saveAs"
+                                       timepicker-options="calendar.timePicker"/>
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn btn-default" ng-click="calendar.opened = !calendar.opened">
+                                        <i class="glyphicon glyphicon-calendar"></i>
+                                    </button>
+                                </span>
+                            </div>
                         </div>
                     </div>
                     <div class="form-group" ng-class="{ 'has-error': problem.statement === '' }">
@@ -40,7 +68,8 @@
                         <label class="control-label" for="entrada">
                             Entrada: <warn ng-if="testCase.input === ''">(Ingrese una entrada válida)</warn>
                         </label>
-                        <textarea class="form-control" rows="3" id="entrada" ng-model="problem.testCases[$index].input"></textarea>
+                        <textarea class="form-control" rows="3" id="entrada" ng-model="problem.testCases[$index].input"
+                                  ng-required="true"></textarea>
                         <div class="test-case-options">
                             <button class="btn btn-sm btn-default pull-right" type="button" ng-click="resetTestCase($index)">
                                 Reiniciar <i class="glyphicon glyphicon glyphicon-refresh"></i>
@@ -55,13 +84,15 @@
                             <label class="control-label" for="salida">
                                 Salida: <warn ng-if="testCase.output === ''">(Ingrese una salida válida)</warn>
                             </label>
-                            <input type="text" class="form-control" id="salida" ng-model="problem.testCases[$index].output">
+                            <input type="text" class="form-control" id="salida" ng-model="problem.testCases[$index].output"
+                                   ng-required="true">
                         </div>
                         <div class="form-group" ng-class="{ 'has-error': testCase.description === '' }">
                             <label class="control-label" for="description">
                                 Descripción: <warn ng-if="testCase.description === ''">(Ingrese una descripción válida)</warn>
                             </label>
-                            <input type="text" class="form-control" id="description" ng-model="problem.testCases[$index].description">
+                            <input type="text" class="form-control" id="description" ng-model="problem.testCases[$index].description"
+                                   ng-required="true">
                         </div>
                     </div>
                 </div>
@@ -125,7 +156,7 @@
             </div>
             <div class="panel panel-default">
                 <div class="panel-footer">
-                    <button class="btn btn-success" type="button" ng-click="send()">
+                    <button id="send" class="btn btn-success" type="button" ng-click="send()">
                         Enviar
                     </button>
                 </div>

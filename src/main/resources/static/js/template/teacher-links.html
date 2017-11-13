@@ -1,7 +1,7 @@
 <div class="collapse navbar-collapse" id="app-navbar-collapse" style="padding-left: 10em">
     <!-- Left Side Of Navbar -->
     <a href="#!/" class="btn navbar-btn" ng-class="{ active: isActive('/') }" role="button">Inicio</a>
-    <a href="#!/problemas" class="btn navbar-btn" ng-class="{ active: isActive('/problemas') }" role="button">Enunciados</a>
+    <a href="#!/problemas" class="btn navbar-btn" ng-class="{ active: isActive('/problemas') || isActive('/problemas/nuevo') }" role="button">Enunciados</a>
     <a href="#!/editor" class="btn navbar-btn" ng-class="{ active: isActive('/editor') }" role="button">Editor</a>
     <a href="#!/snippets" class="btn navbar-btn" ng-class="{ active: isActive('/snippets') }" role="button">Snippets</a>
 

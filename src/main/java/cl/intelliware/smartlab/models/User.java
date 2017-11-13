@@ -53,7 +53,6 @@ public class User {
             joinColumns = @JoinColumn(name = "student_id"),
             inverseJoinColumns = @JoinColumn(name = "section_id")
     )
-    @JsonIgnore
     private Set<Section> sectionsAttending;
 
     @OneToMany(mappedBy = "user")
