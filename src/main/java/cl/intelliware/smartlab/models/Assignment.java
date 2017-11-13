@@ -18,12 +18,12 @@ public class Assignment {
     @Column(name = "assignment_id")
     private long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "student_id")
     @JsonIgnore
     private User student;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "problem_id")
     private Problem problem;
 

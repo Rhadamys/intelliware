@@ -75,6 +75,14 @@ public class Problem {
         this.teacher = teacher;
     }
 
+    public void setTestCases(Set<TestCase> testCases) {
+        this.testCases = testCases;
+    }
+
+    public void setAssignments(Set<Assignment> assignments) {
+        this.assignments = assignments;
+    }
+
     public String getTitle() { return title; }
 
     public void setTitle(String title) { this.title = title; }
