@@ -39,7 +39,10 @@ public class TestCase {
         this.description = description;
         this.problem = problem;
     }
-
+    public TestCase(String input,String output){
+        this.input=input;
+        this.output=output;
+    }
     public long getId() {
         return id;
     }
