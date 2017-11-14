@@ -43,6 +43,7 @@ INSERT INTO sections_students (student_id, section_id) VALUES (7,2);
 INSERT INTO sections_students (student_id, section_id) VALUES (8,2);
 INSERT INTO sections_students (student_id, section_id) VALUES (9,2);
 INSERT INTO sections_students (student_id, section_id) VALUES (10,2);
+INSERT INTO sections_students (student_id, section_id) VALUES (12,2);
 
 INSERT INTO sections_teachers (teacher_id, section_id) VALUES (11,1);
 INSERT INTO sections_teachers (teacher_id, section_id) VALUES (11,2);
@@ -60,6 +61,7 @@ INSERT INTO assignments (assigned_at, deadline, grade, problem_id, student_id) V
 INSERT INTO assignments (assigned_at, deadline, grade, problem_id, student_id) VALUES ("2017-12-16 11:30:13", "2017-12-30 23:59:59", null, 2, 7);
 INSERT INTO assignments (assigned_at, deadline, grade, problem_id, student_id) VALUES ("2017-12-16 11:30:14", "2017-12-30 23:59:59", null, 2, 8);
 INSERT INTO assignments (assigned_at, deadline, grade, problem_id, student_id) VALUES ("2017-12-16 11:30:15", "2017-12-30 23:59:59", null, 2, 9);
+INSERT INTO assignments (assigned_at, deadline, grade, problem_id, student_id) VALUES ("2017-12-16 11:30:16", "2017-12-30 23:59:59", null, 1, 12);
 INSERT INTO assignments (assigned_at, deadline, grade, problem_id, student_id) VALUES ("2017-12-16 11:30:16", "2017-12-30 23:59:59", null, 2, 12);
 
 
