@@ -72,16 +72,16 @@ public class Submission {
         return failTest;
     }
 
-    public void setFailTest(int failTest) {
-        this.failTest = failTest;
+    public void addFailTest() {
+        this.failTest++;
     }
 
     public int getSuccededTest() {
         return succededTest;
     }
 
-    public void setSuccededTest(int succededTest) {
-        this.succededTest = succededTest;
+    public void addSuccededTest() {
+        this.succededTest--;
     }
 
     public boolean isCompilationError() {

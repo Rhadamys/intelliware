@@ -1,4 +1,20 @@
-app.controller('ListAssignmentsController', ['$scope', '$http', function ($scope, $http) {
+app.factory('SubmissionService', function() {
+    var submission = null;
+    return {
+        problemSubmit: function(sub) {
+            submit = true;
+            submission = sub;
+        },
+        getSubmission: function () {
+            const sub = submission;
+            submission = null;
+            return sub;
+        }
+    }
+});
+
+app.controller('ListAssignmentsController', ['$scope', '$http', 'SubmissionService',
+    function ($scope, $http, submissionService) {
     $scope.assignments = [];
 
     $scope.pagination = {
@@ -6,6 +22,8 @@ app.controller('ListAssignmentsController', ['$scope', '$http', function ($scope
         itemsPerPage: 5,
         maxSize: 5
     };
+
+    $scope.submission = submissionService.getSubmission();
 
     // Initial data
     $scope.getAssignments = function () {

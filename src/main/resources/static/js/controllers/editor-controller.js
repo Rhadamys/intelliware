@@ -1,5 +1,5 @@
-app.controller('EditorController', ['$scope', '$routeParams', '$http', '$document', '$window', 'snippetService',
-    function($scope,$routeParams,$http,$document,$window, snippetService) {
+app.controller('EditorController', ['$scope', '$routeParams', '$http', '$document', '$window', 'snippetService', 'SubmissionService',
+    function($scope,$routeParams,$http,$document,$window, snippetService, submissionService) {
     $scope.editor = null;
     $scope.console = document.getElementById("output");
     $scope.snippetDescription = ' ';
@@ -44,17 +44,18 @@ app.controller('EditorController', ['$scope', '$routeParams', '$http', '$documen
 
     /** API CALLS */
     $scope.postSubmission = function() {
-
         $http({
             method: 'POST',
-            url: 'http://localhost:9090/python/',
+            url: 'http://localhost:9090/submissions/',
             data: {
+                assignment: $scope.assignment,
                 code : $scope.editor.getDoc().getValue()
             }
         })
         .then(
             function(response) {
-                $scope.outf(response.data.response);
+                submissionService.problemSubmit(response.data);
+                $window.history.back();
         })
         .catch(
             function(error) {

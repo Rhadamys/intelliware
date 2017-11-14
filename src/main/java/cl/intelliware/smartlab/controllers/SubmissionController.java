@@ -1,5 +1,7 @@
 package cl.intelliware.smartlab.controllers;
 
+import cl.intelliware.smartlab.models.TestCase;
+import cl.intelliware.smartlab.repositories.AssignmentRepository;
 import cl.intelliware.smartlab.utils.PyInterpreter.PyInterpreter;
 import cl.intelliware.smartlab.models.Submission;
 import cl.intelliware.smartlab.repositories.SubmissionRepository;
@@ -11,10 +13,13 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(path="/submissions")
 public class SubmissionController
 {
+    private final AssignmentRepository assignmentRepository;
     private final SubmissionRepository submissionRepository;
 
     @Autowired
-    public SubmissionController(SubmissionRepository submissionRepository) {
+    public SubmissionController(AssignmentRepository assignmentRepository,
+                                SubmissionRepository submissionRepository) {
+        this.assignmentRepository = assignmentRepository;
         this.submissionRepository = submissionRepository;
     }
 
@@ -33,15 +38,17 @@ public class SubmissionController
     }
 
     @PostMapping(path = "/")
-    public @ResponseBody Void postSubmission(@RequestBody Submission submission){
+    public @ResponseBody Submission postSubmission(@RequestBody Submission submission){
         PyInterpreter interpreter = new PyInterpreter(submission.getCode());
-
-
-        System.out.println(submission.toString());
-
-
-        interpreter.run("Hola mundo!");
-
-        return null;
+        for(TestCase testCase: submission.getAssignment().getProblem().getTestCases()) {
+            String out = interpreter.run(testCase.getInput());
+            if(out.equals(testCase.getOutput()))
+                submission.addSuccededTest();
+            else
+                submission.addFailTest();
+        }
+        assignmentRepository.delete(submission.getAssignment().getId());
+        submission.setAssignment(null);
+        return submissionRepository.save(submission);
     }
 }
