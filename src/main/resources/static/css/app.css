@@ -12,6 +12,10 @@ textarea {
     resize: none;
 }
 
+#input{
+    width: 100%;
+}
+
 /* Barra de navegación */
 .navbar {
     background: var(--main-color) !important;

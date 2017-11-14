@@ -43,8 +43,27 @@ app.controller('EditorController', ['$scope', '$routeParams', '$http', '$documen
     };
 
     /** API CALLS */
-    $scope.postSubmission = function() {
+    $scope.runCode = function() {
+        $http({
+            method: 'POST',
+            url: 'http://localhost:9090/python/',
+            data: {
+                code : $scope.editor.getDoc().getValue(),
+                input: $scope.input
+            }
+        })
+        .then(
+            function(response) {
+                $scope.outf(response.data.response);
+        })
+        .catch(
+            function(error) {
+                $scope.outf(error);
+        }
+        );
+    };
 
+    $scope.postSubmission = function() {
         $http({
             method: 'POST',
             url: 'http://localhost:9090/python/',
