@@ -1,5 +1,8 @@
 <div class="container" ng-controller="EditorController">
     <div class="col-md-12">
+        <div class="panel panel-default" ng-if="assignment">
+            <p>{{ assignment.problem.statement }}</p>
+        </div>
         <div class="panel panel-default">
             <div class="panel-heading">
                 <div class="btn-toolbar">
@@ -17,12 +20,19 @@
                                 ng-click="changeTheme('mbo')"
                                 ng-class="{ active: isThemeActive('mbo') }">MBO</button>
                     </div>
-                    <button class="btn btn-success pull-right"
+                    <button ng-if="assignment === null" class="btn btn-default pull-right"
                             type="button"
                             ng-click="share-collapse()"
                             data-toggle="collapse"
                             data-target="#share-collapsable">
                         <span class="glyphicon glyphicon-share"></span> Compartir
+                    </button>
+                    <button ng-if="assignment" class="btn btn-default pull-right"
+                            type="button"
+                            ng-click=""
+                            data-toggle="collapse"
+                            data-target="#share-collapsable">
+                        <span class="glyphicon glyphicon-share"></span> Subir
                     </button>
                     <button class="btn btn-success pull-right"
                             type="button"

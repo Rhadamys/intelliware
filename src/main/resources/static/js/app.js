@@ -31,6 +31,9 @@ app.config(function($routeProvider){
             templateUrl: 'js/views/snippets/detail.html',
             controller: 'SnippetsController'
         })
+        .when('/tareas/:id/editor', {
+            templateUrl: 'js/views/editor.html'
+        })
         .otherwise({
             redirectTo: '/'
         });

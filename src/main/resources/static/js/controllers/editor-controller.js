@@ -1,4 +1,5 @@
-app.controller('EditorController', ['$scope', '$http', '$document', '$window', 'snippetService', function($scope,$http,$document,$window, snippetService) {
+app.controller('EditorController', ['$scope', '$routeParams', '$http', '$document', '$window', 'snippetService',
+    function($scope,$routeParams,$http,$document,$window, snippetService) {
     $scope.editor = null;
     $scope.console = document.getElementById("output");
     $scope.snippetDescription = ' ';
@@ -117,5 +118,16 @@ app.controller('EditorController', ['$scope', '$http', '$document', '$window', '
 
     $scope.isThemeActive = function(theme) {
         return $scope.editor.getOption('theme') === theme;
-    }
-}])
+    };
+
+    $scope.assignment = null;
+    $scope.getAssignment = function() {
+        if($routeParams.id) {
+            $http.get("http://localhost:9090/assignments/" + $routeParams.id)
+                .then(function (response) {
+                    $scope.assignment = response.data;
+                });
+        }
+    };
+    $scope.getAssignment();
+}]);
