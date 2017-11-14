@@ -11,6 +11,8 @@ INSERT INTO users (first_name, last_name, mail, rut) VALUES ("Veronica", "Calas"
 INSERT INTO users (first_name, last_name, mail, rut) VALUES ("Alcides", "Quispe", "alcides.quispe@usach.cl", "16.112.332-4");
 INSERT INTO users (first_name, last_name, mail, rut) VALUES ("Natalia", "Guzman", "natalia.guzman.s@usach.cl", "19.680.464-1");
 INSERT INTO users (first_name, last_name, mail, rut) VALUES ("Mario", "Alvarez", "mario.alvarez.m@usach.cl", "19.522.760-8");
+INSERT INTO users (first_name, last_name, mail, rut) VALUES ("Joaquin", "Jara", "joaquin.jara@usach.cl", "19.739.353-k");
+
 
 INSERT INTO roles (name) VALUES ("Student");
 INSERT INTO roles (name) VALUES ("Teacher");
@@ -28,6 +30,7 @@ INSERT INTO roles_users (user_id, role_id) VALUES (10,1);
 INSERT INTO roles_users (user_id, role_id) VALUES (11,2);
 INSERT INTO roles_users (user_id, role_id) VALUES (12,1);
 INSERT INTO roles_users (user_id, role_id) VALUES (13,1);
+INSERT INTO roles_users (user_id, role_id) VALUES (14,1);
 
 INSERT INTO sections (semester) VALUES ("2-A1");
 INSERT INTO sections (semester) VALUES ("2-A2");
@@ -37,6 +40,8 @@ INSERT INTO sections_students (student_id, section_id) VALUES (2,1);
 INSERT INTO sections_students (student_id, section_id) VALUES (3,1);
 INSERT INTO sections_students (student_id, section_id) VALUES (4,1);
 INSERT INTO sections_students (student_id, section_id) VALUES (5,1);
+INSERT INTO sections_students (student_id, section_id) VALUES (13,1);
+
 
 INSERT INTO sections_students (student_id, section_id) VALUES (6,2);
 INSERT INTO sections_students (student_id, section_id) VALUES (7,2);
@@ -44,6 +49,7 @@ INSERT INTO sections_students (student_id, section_id) VALUES (8,2);
 INSERT INTO sections_students (student_id, section_id) VALUES (9,2);
 INSERT INTO sections_students (student_id, section_id) VALUES (10,2);
 INSERT INTO sections_students (student_id, section_id) VALUES (12,2);
+INSERT INTO sections_students (student_id, section_id) VALUES (14,2);
 
 INSERT INTO sections_teachers (teacher_id, section_id) VALUES (11,1);
 INSERT INTO sections_teachers (teacher_id, section_id) VALUES (11,2);
@@ -61,7 +67,15 @@ INSERT INTO assignments (assigned_at, deadline, grade, problem_id, student_id) V
 INSERT INTO assignments (assigned_at, deadline, grade, problem_id, student_id) VALUES ("2017-12-16 11:30:13", "2017-12-30 23:59:59", null, 2, 7);
 INSERT INTO assignments (assigned_at, deadline, grade, problem_id, student_id) VALUES ("2017-12-16 11:30:14", "2017-12-30 23:59:59", null, 2, 8);
 INSERT INTO assignments (assigned_at, deadline, grade, problem_id, student_id) VALUES ("2017-12-16 11:30:15", "2017-12-30 23:59:59", null, 2, 9);
-INSERT INTO assignments (assigned_at, deadline, grade, problem_id, student_id) VALUES ("2017-12-16 11:30:16", "2017-12-30 23:59:59", null, 1, 12);
+INSERT INTO assignments (assigned_at, deadline, grade, problem_id, student_id) VALUES ("2017-12-16 11:30:16", "2017-12-12 09:30:00", null, 1, 12);
 INSERT INTO assignments (assigned_at, deadline, grade, problem_id, student_id) VALUES ("2017-12-16 11:30:16", "2017-12-30 23:59:59", null, 2, 12);
+
+INSERT INTO assignments (assigned_at, deadline, grade, problem_id, student_id) VALUES ("2017-12-16 11:30:16", "2017-12-12 09:30:00", null, 1, 14);
+INSERT INTO assignments (assigned_at, deadline, grade, problem_id, student_id) VALUES ("2017-12-16 11:30:16", "2017-12-30 23:59:59", null, 2, 14);
+
+INSERT INTO assignments (assigned_at, deadline, grade, problem_id, student_id) VALUES ("2017-12-16 11:30:16", "2017-12-12 09:30:00", null, 1, 13);
+INSERT INTO assignments (assigned_at, deadline, grade, problem_id, student_id) VALUES ("2017-12-16 11:30:16", "2017-12-30 23:59:59", null, 2, 13);
+
+
 
 

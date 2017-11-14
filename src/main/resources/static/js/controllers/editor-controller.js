@@ -49,7 +49,7 @@ app.controller('EditorController', ['$scope', '$routeParams', '$http', '$documen
             method: 'POST',
             url: 'http://localhost:9090/python/',
             data: {
-                code : $scope.editor.getDoc().getValue(),
+                code : $scope.editor.getDoc().getValue()
             }
         })
         .then(
