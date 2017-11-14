@@ -39,11 +39,7 @@ public class StudentController
     public @ResponseBody User getStudent(@PathVariable("id") Integer id)
     {
         long lid = id.longValue();
-        User user = userRepository.findOne(lid);
-        if (user.getRoles().contains(studentRole)){
-            return user;
-        }
-        return null;
+        return userRepository.findOne(lid);
     }
 
     @GetMapping(path="/{id}/assignments")
