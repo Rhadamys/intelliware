@@ -1,5 +1,6 @@
 package cl.intelliware.smartlab.controllers;
 
+import cl.intelliware.smartlab.models.Assignment;
 import cl.intelliware.smartlab.models.Role;
 import cl.intelliware.smartlab.models.User;
 
@@ -7,6 +8,8 @@ import cl.intelliware.smartlab.repositories.RoleRepository;
 import cl.intelliware.smartlab.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping(path="/students")
@@ -36,10 +39,13 @@ public class StudentController
     public @ResponseBody User getStudent(@PathVariable("id") Integer id)
     {
         long lid = id.longValue();
-        User user = userRepository.findOne(lid);
-        if (user.getRoles().contains(studentRole)){
-            return user;
-        }
-        return null;
+        return userRepository.findOne(lid);
+    }
+
+    @GetMapping(path="/{id}/assignments")
+    public @ResponseBody List<Assignment> getAssignmentsByStudent(@PathVariable("id") Integer id)
+    {
+        User student = getStudent(id);
+        return student.getAssignments();
     }
 }

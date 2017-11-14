@@ -20,6 +20,9 @@ app.config(function($routeProvider){
         .when('/problemas/nuevo', {
             templateUrl: 'js/views/problems/create.html'
         })
+        .when('/tareas', {
+            templateUrl: 'js/views/assignments/list.html'
+        })
         .when('/snippets', {
             templateUrl: 'js/views/snippets/list.html',
             controller: 'SnippetsController'
@@ -27,6 +30,9 @@ app.config(function($routeProvider){
         .when('/snippets/detail', {
             templateUrl: 'js/views/snippets/detail.html',
             controller: 'SnippetsController'
+        })
+        .when('/tareas/:id/editor', {
+            templateUrl: 'js/views/editor.html'
         })
         .otherwise({
             redirectTo: '/'

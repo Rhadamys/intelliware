@@ -1,5 +1,6 @@
 package cl.intelliware.smartlab.models;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -18,18 +19,20 @@ public class Assignment {
     @Column(name = "assignment_id")
     private long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "student_id")
     @JsonIgnore
     private User student;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "problem_id")
     private Problem problem;
 
+    @JsonFormat(pattern = "dd/MM/yyyy' a las 'hh:mm")
     @CreationTimestamp
     private Date assignedAt;
 
+    @JsonFormat(pattern = "dd/MM/yyyy' a las 'hh:mm")
     @NotNull
     private Date deadline;
 
@@ -112,7 +115,7 @@ public class Assignment {
 
     @Override
     public String toString() {
-        return "Assignment{" +
+        return "assignments{" +
                 "id=" + id +
                 ", student=" + student +
                 ", problem=" + problem +

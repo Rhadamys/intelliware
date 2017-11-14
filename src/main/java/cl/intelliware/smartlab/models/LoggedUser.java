@@ -29,15 +29,15 @@ public class LoggedUser
     {
     }
 
-    public void setUserDetails(OAuth2Authentication authentication) throws IOException
+    public static void setUserDetails(OAuth2Authentication authentication) throws IOException
     {
         //System.out.println(authentication.getUserAuthentication().getDetails());
-        if(this.details == null)
+        if(instance.details == null)
         {
-            this.details = authentication.getUserAuthentication().getDetails();
+            instance.details = authentication.getUserAuthentication().getDetails();
 
         }
-        if(this.eMail == null)
+        if(instance.eMail == null)
         {
 
             String detailsString = LoggedUser.getInstance().getDetails().toString();
@@ -48,11 +48,11 @@ public class LoggedUser
             String emailParts[] = emailDetail.split("=");
             String email = emailParts[1];
 
-            this.eMail = email;
+            instance.eMail = email;
 
             //System.out.println(email);
         }
-        if(this.firstName == null)
+        if(instance.firstName == null)
         {
             //System.out.println("first name");
             String detailsString = LoggedUser.getInstance().getDetails().toString();
@@ -64,9 +64,9 @@ public class LoggedUser
             String firstNameDetails3[] = firstNameDetails2[1].split(" ");
             String f = firstNameDetails3[0];
 
-            this.firstName = f;
+            instance.firstName = f;
         }
-        if(this.lastName == null)
+        if(instance.lastName == null)
         {
             //System.out.println("last name");
             String detailsString = LoggedUser.getInstance().getDetails().toString();
@@ -78,7 +78,7 @@ public class LoggedUser
             String lastNameDetails3[] = lastNameDetails2[1].split(" ");
             String l = lastNameDetails3[1];
 
-            this.lastName = l;
+            instance.lastName = l;
         }
     }
 

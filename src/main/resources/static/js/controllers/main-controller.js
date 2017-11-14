@@ -3,6 +3,17 @@ app.controller('MainController', ['$scope', '$location', '$http',function($scope
 	$scope.user = null;
 	$scope.flag = 0;
 
+	$scope.templateUrl = function () {
+	    if($scope.user) {
+	        var template = 'js/template/student-links.html';
+	        $scope.user.instance.roles.forEach(function(role) {
+	            if(role.name === 'Teacher') template = 'js/template/teacher-links.html';
+            });
+	        return template;
+        }
+        return'js/template/guest-links.html';
+    };
+
 	$scope.isActive = function(route) {
         return route === $location.path();
     };
@@ -16,16 +27,7 @@ app.controller('MainController', ['$scope', '$location', '$http',function($scope
     var init = function(){
         //console.log("primer get");
         $http.get('http://localhost:9090/users/logged').then(function(response){
-            console.log(response.data);
-            responseData = response.data.userAuthentication.details;
-            if ($scope.user == null) {$scope.user={};}
-            $scope.user = $scope.joinObjects($scope.user,responseData);
-
-            userInfo = $scope.getUserInfo(responseData.email);
-            console.log("Info en server");
-            console.log(userInfo);
-            
-            //console.log($scope.user);
+            $scope.user = response.data;
         });
         //console.log("segundo get");
         $http.get('http://localhost:9090/loggedUsers/new/').then(function(response) {

@@ -1,4 +1,5 @@
-app.controller('EditorController', ['$scope', '$http', '$document', '$window', 'snippetService', function($scope,$http,$document,$window, snippetService) {
+app.controller('EditorController', ['$scope', '$routeParams', '$http', '$document', '$window', 'snippetService', 'SubmissionService',
+    function($scope,$routeParams,$http,$document,$window, snippetService, submissionService) {
     $scope.editor = null;
     $scope.console = document.getElementById("output");
     $scope.snippetDescription = ' ';
@@ -42,18 +43,39 @@ app.controller('EditorController', ['$scope', '$http', '$document', '$window', '
     };
 
     /** API CALLS */
-    $scope.postSubmission = function() {
-
+    $scope.runCode = function() {
         $http({
             method: 'POST',
             url: 'http://localhost:9090/python/',
             data: {
                 code : $scope.editor.getDoc().getValue(),
+                input: $scope.input
             }
         })
         .then(
             function(response) {
                 $scope.outf(response.data.response);
+        })
+        .catch(
+            function(error) {
+                $scope.outf(error);
+        }
+        );
+    };
+
+    $scope.postSubmission = function() {
+        $http({
+            method: 'POST',
+            url: 'http://localhost:9090/submissions/',
+            data: {
+                assignment: $scope.assignment,
+                code : $scope.editor.getDoc().getValue()
+            }
+        })
+        .then(
+            function(response) {
+                submissionService.problemSubmit(response.data);
+                $window.history.back();
         })
         .catch(
             function(error) {
@@ -117,5 +139,16 @@ app.controller('EditorController', ['$scope', '$http', '$document', '$window', '
 
     $scope.isThemeActive = function(theme) {
         return $scope.editor.getOption('theme') === theme;
-    }
-}])
+    };
+
+    $scope.assignment = null;
+    $scope.getAssignment = function() {
+        if($routeParams.id) {
+            $http.get("http://localhost:9090/assignments/" + $routeParams.id)
+                .then(function (response) {
+                    $scope.assignment = response.data;
+                });
+        }
+    };
+    $scope.getAssignment();
+}]);

@@ -1,5 +1,14 @@
 <div class="container" ng-controller="EditorController">
     <div class="col-md-12">
+        <div class="panel panel-default" ng-if="assignment">
+            <div class="panel-body">
+                <div class="problem-header">
+                    <h4><b>{{ assignment.problem.title }}</b></h4>
+                    <h4>Fecha límite: {{ assignment.deadline }}</h4>
+                </div>
+                <p>{{ assignment.problem.statement }}</p>
+            </div>
+        </div>
         <div class="panel panel-default">
             <div class="panel-heading">
                 <div class="btn-toolbar">
@@ -17,40 +26,47 @@
                                 ng-click="changeTheme('mbo')"
                                 ng-class="{ active: isThemeActive('mbo') }">MBO</button>
                     </div>
-                    <button class="btn btn-success pull-right"
+                    <button ng-if="assignment === null" class="btn btn-default pull-right"
                             type="button"
                             ng-click="share-collapse()"
                             data-toggle="collapse"
                             data-target="#share-collapsable">
                         <span class="glyphicon glyphicon-share"></span> Compartir
                     </button>
-                    <button class="btn btn-success pull-right"
+                    <button ng-if="assignment" class="btn btn-default pull-right"
                             type="button"
                             ng-click="postSubmission()">
+                        <span class="glyphicon glyphicon-share"></span> Subir
+                    </button>
+                    <button class="btn btn-success pull-right"
+                            type="button"
+                            ng-click="runCode()">
                         <span class="glyphicon glyphicon-play"></span> Ejecutar
                     </button>
                 </div>
                 <div id="share-collapsable" class="collapse collapse-panel">
-                    <div class="form-group">
-
-                        <label for="snippet-title">Título:</label>
-                        <input type="text"
-                               ng-model="snippetTitle"
-                               name='snippetTitle'
-                               class="form-control"
-                               id="snippet-title"
-                               value=""
-                               required>
-                        <button class="btn btn-success pull-right"
-                                type="button"
-                                ng-click="postSnippet()">
-                            <span class="glyphicon glyphicon-share"></span> Compartir Ahora!
-                        </button>
-                        <label for="snippet-description">Descripción (opcional):</label>
-                        <input type="text" ng-model="snippetDescription" name="snippetDescription" class="form-control" id="snippet-description" value=" ">
-
-
-
+                    <div class="form-group well">
+                        <div class="row">
+                            <label for="snippet-title">Título:</label>
+                            <input type="text"
+                                   ng-model="snippetTitle"
+                                   name='snippetTitle'
+                                   class="form-control"
+                                   id="snippet-title"
+                                   value=""
+                                   required>
+                        </div>
+                        <div class="row">
+                            <label for="snippet-description">Descripción (opcional):</label>
+                            <input type="text" ng-model="snippetDescription" name="snippetDescription" class="form-control" id="snippet-description" value=" ">
+                        </div>
+                        <div class="row">
+                            <button class="btn btn-success pull-right"
+                                    type="button"
+                                    ng-click="postSnippet()">
+                                <span class="glyphicon glyphicon-share"></span> Compartir Ahora!
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -61,7 +77,13 @@
                     <pre id="output" class="console"></pre>
                     <div id="mycanvas"></div>
                 </div>
+
             </div>
+
+        </div>
+        <div class="well">
+            <h4>Entrada:</h4>
+            <textarea name="consoleInput" ng-model="input" id="input" rows="3"></textarea>
         </div>
     </div>
 </div>
