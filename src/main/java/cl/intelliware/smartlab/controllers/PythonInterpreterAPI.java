@@ -10,11 +10,14 @@ public class PythonInterpreterAPI
 {
     @PostMapping(path = "/")
     public @ResponseBody PythonResponse postSubmission(@RequestBody PythonRequest request){
+        System.out.printf(request.getCode());
+        System.out.printf(request.getInput());
+
         PyInterpreter interpreter = new PyInterpreter(request.getCode());
 
         String response;
         try {
-            response = interpreter.run();
+            response = interpreter.run(request.getInput());
         }catch(Exception ex){
             ex.printStackTrace();
             response = ex.getMessage();
@@ -35,6 +38,7 @@ public class PythonInterpreterAPI
 
 class PythonRequest{
     private String code;
+    private String input;
 
     public PythonRequest() {
     }
@@ -45,6 +49,14 @@ class PythonRequest{
 
     public void setCode(String code) {
         this.code = code;
+    }
+
+    public String getInput() {
+        return input;
+    }
+
+    public void setInput(String input) {
+        this.input = input;
     }
 }
 

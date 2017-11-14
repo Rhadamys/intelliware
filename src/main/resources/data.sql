@@ -76,6 +76,20 @@ INSERT INTO assignments (assigned_at, deadline, grade, problem_id, student_id) V
 INSERT INTO assignments (assigned_at, deadline, grade, problem_id, student_id) VALUES ("2017-12-16 11:30:16", "2017-12-12 09:30:00", null, 1, 13);
 INSERT INTO assignments (assigned_at, deadline, grade, problem_id, student_id) VALUES ("2017-12-16 11:30:16", "2017-12-30 23:59:59", null, 2, 13);
 
+INSERT INTO test_cases (description, input, output, problem_id) VALUES ("Factorial de 3","3","6",1);
+INSERT INTO test_cases (description, input, output, problem_id) VALUES ("Factorial de 4","4","24",1);
+INSERT INTO test_cases (description, input, output, problem_id) VALUES ("Factorial de 5","5","120",1);
+INSERT INTO test_cases (description, input, output, problem_id) VALUES ("Factorial de 6","6","720",1);
+INSERT INTO test_cases (description, input, output, problem_id) VALUES ("Factorial de 7","7","5040",1);
+INSERT INTO test_cases (description, input, output, problem_id) VALUES ("Factorial de 8","8","40320",1);
+
+INSERT INTO test_cases (description, input, output, problem_id) VALUES ("Sumatoria de 1","1","1",2);
+INSERT INTO test_cases (description, input, output, problem_id) VALUES ("Sumatoria de 2","2","3",2);
+INSERT INTO test_cases (description, input, output, problem_id) VALUES ("Sumatoria de 3","3","6",2);
+INSERT INTO test_cases (description, input, output, problem_id) VALUES ("Sumatoria de 4","4","10",2);
+INSERT INTO test_cases (description, input, output, problem_id) VALUES ("Sumatoria de 5","5","15",2);
+INSERT INTO test_cases (description, input, output, problem_id) VALUES ("Sumatoria de 6","6","21",2);
+
 
 
 

@@ -42,7 +42,9 @@ public class SubmissionController
         PyInterpreter interpreter = new PyInterpreter(submission.getCode());
         for(TestCase testCase: submission.getAssignment().getProblem().getTestCases()) {
             String out = interpreter.run(testCase.getInput());
-            if(out.equals(testCase.getOutput()))
+            out = out.trim();
+            //System.out.println("print: " + out + " " + testCase.getOutput());
+            if(out.equals(testCase.getOutput().trim()))
                 submission.addSuccededTest();
             else
                 submission.addFailTest();

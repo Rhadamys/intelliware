@@ -81,7 +81,7 @@ public class Submission {
     }
 
     public void addSuccededTest() {
-        this.succededTest--;
+        this.succededTest++;
     }
 
     public boolean isCompilationError() {
