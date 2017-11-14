@@ -1,7 +1,7 @@
 package cl.intelliware.smartlab.utils;
 
 import cl.intelliware.smartlab.models.TestCase;
-import cl.intelliware.smartlab.utils.PyInterpreter;
+import cl.intelliware.smartlab.utils.PyInterpreter.PyInterpreter;
 import org.dom4j.CharacterData;
 import org.junit.Assert;
 import org.junit.Before;
@@ -26,6 +26,7 @@ public class PyInterpreterTest {
         String code = "i=2\nprint i";
         interprete = new PyInterpreter(code);
         String output = interprete.run(testCase1.getInput());
+        output=output.trim();
         Assert.assertEquals(output,testCase1.getOutput());
     }
     @Test
@@ -35,6 +36,7 @@ public class PyInterpreterTest {
                 "\n\ti=i+1\nprint i";
         interprete = new PyInterpreter(code);
         String output=interprete.run(testCase2.getInput());
+        output=output.trim();
         Assert.assertEquals(output,testCase2.getOutput());
     }
     @Test
@@ -45,7 +47,8 @@ public class PyInterpreterTest {
                 "cuadrado=alCuadrado(entrada)\n" +
                 "print cuadrado";
         interprete = new PyInterpreter(code);
-        String exitTest=interprete.run(testCase3.getInput());
-        Assert.assertEquals(exitTest,testCase3.getOutput());
+        String output=interprete.run(testCase3.getInput());
+        output=output.trim();
+        Assert.assertEquals(output,testCase3.getOutput());
     }
 }
