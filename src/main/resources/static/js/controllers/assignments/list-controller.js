@@ -9,7 +9,7 @@ app.controller('ListAssignmentsController', ['$scope', '$http', function ($scope
 
     // Initial data
     $scope.getAssignments = function () {
-        $http.get("http://localhost:9090/students/" + $scope.user.id + "/assignments")
+        $http.get("http://localhost:9090/students/" + $scope.$parent.user.instance.id + "/assignments")
             .then(function successCallback(response) {
                 $scope.assignments = response.data;
             }, function errorCallback(response) {

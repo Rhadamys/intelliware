@@ -26,7 +26,7 @@ INSERT INTO roles_users (user_id, role_id) VALUES (8,1);
 INSERT INTO roles_users (user_id, role_id) VALUES (9,1);
 INSERT INTO roles_users (user_id, role_id) VALUES (10,1);
 INSERT INTO roles_users (user_id, role_id) VALUES (11,2);
-INSERT INTO roles_users (user_id, role_id) VALUES (12,2);
+INSERT INTO roles_users (user_id, role_id) VALUES (12,1);
 INSERT INTO roles_users (user_id, role_id) VALUES (13,1);
 
 INSERT INTO sections (semester) VALUES ("2-A1");
@@ -60,6 +60,6 @@ INSERT INTO assignments (assigned_at, deadline, grade, problem_id, student_id) V
 INSERT INTO assignments (assigned_at, deadline, grade, problem_id, student_id) VALUES ("2017-12-16 11:30:13", "2017-12-30 23:59:59", null, 2, 7);
 INSERT INTO assignments (assigned_at, deadline, grade, problem_id, student_id) VALUES ("2017-12-16 11:30:14", "2017-12-30 23:59:59", null, 2, 8);
 INSERT INTO assignments (assigned_at, deadline, grade, problem_id, student_id) VALUES ("2017-12-16 11:30:15", "2017-12-30 23:59:59", null, 2, 9);
-INSERT INTO assignments (assigned_at, deadline, grade, problem_id, student_id) VALUES ("2017-12-16 11:30:16", "2017-12-30 23:59:59", null, 2, 10);
+INSERT INTO assignments (assigned_at, deadline, grade, problem_id, student_id) VALUES ("2017-12-16 11:30:16", "2017-12-30 23:59:59", null, 2, 12);
 
 
