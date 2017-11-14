@@ -50,7 +50,7 @@
                         <img class="img-responsive" src="../../img/brand-icon.png" style="height: 1.75em; margin-right: 0.5em">
                         <a class="navbar-brand" href="#">SmartLab</a>
                     </div>
-                    <div ng-include="user ? 'js/template/teacher-links.html' : 'js/template/guest-links.html'"></div>
+                    <div ng-include="templateUrl()"></div>
                 </div>
             </nav>
         </div>
@@ -64,6 +64,7 @@
     <script src="js/controllers/editor-controller.js"></script>
     <script src="js/controllers/problems/list-controller.js"></script>
     <script src="js/controllers/problems/create-controller.js"></script>
+    <script src="js/controllers/assignments/list-controller.js"></script>
     <script src="js/controllers/snippets-controller.js"></script>
 </body>
 </html>

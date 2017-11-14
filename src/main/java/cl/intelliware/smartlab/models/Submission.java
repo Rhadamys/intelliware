@@ -96,7 +96,7 @@ public class Submission {
     public String toString() {
         return "Submission{" +
                 "id=" + id +
-                ", assignment=" + assignment +
+                ", assignments=" + assignment +
                 ", code='" + code + '\'' +
                 ", submittedAt=" + submittedAt +
                 ", failTest=" + failTest +

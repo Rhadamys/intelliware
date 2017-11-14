@@ -9,6 +9,8 @@ INSERT INTO users (first_name, last_name, mail, rut) VALUES ("Jose", "Bahamondes
 INSERT INTO users (first_name, last_name, mail, rut) VALUES ("Enrique", "Aviles", "enrique.aviles@usach.cl", "19.223.511-8");
 INSERT INTO users (first_name, last_name, mail, rut) VALUES ("Veronica", "Calas", "veronica.calas@usach.cl", "19.134.474-7");
 INSERT INTO users (first_name, last_name, mail, rut) VALUES ("Alcides", "Quispe", "alcides.quispe@usach.cl", "16.112.332-4");
+INSERT INTO users (first_name, last_name, mail, rut) VALUES ("Natalia", "Guzman", "natalia.guzman.s@usach.cl", "19.680.464-1");
+INSERT INTO users (first_name, last_name, mail, rut) VALUES ("Mario", "Alvarez", "mario.alvarez.m@usach.cl", "19.522.760-8");
 
 INSERT INTO roles (name) VALUES ("Student");
 INSERT INTO roles (name) VALUES ("Teacher");
@@ -24,6 +26,8 @@ INSERT INTO roles_users (user_id, role_id) VALUES (8,1);
 INSERT INTO roles_users (user_id, role_id) VALUES (9,1);
 INSERT INTO roles_users (user_id, role_id) VALUES (10,1);
 INSERT INTO roles_users (user_id, role_id) VALUES (11,2);
+INSERT INTO roles_users (user_id, role_id) VALUES (12,2);
+INSERT INTO roles_users (user_id, role_id) VALUES (13,1);
 
 INSERT INTO sections (semester) VALUES ("2-A1");
 INSERT INTO sections (semester) VALUES ("2-A2");

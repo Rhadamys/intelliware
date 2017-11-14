@@ -20,6 +20,9 @@ app.config(function($routeProvider){
         .when('/problemas/nuevo', {
             templateUrl: 'js/views/problems/create.html'
         })
+        .when('/tareas', {
+            templateUrl: 'js/views/assignments/list.html'
+        })
         .when('/snippets', {
             templateUrl: 'js/views/snippets/list.html',
             controller: 'SnippetsController'

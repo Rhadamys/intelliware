@@ -22,12 +22,6 @@ public class AssignmentController
         this.problemRepository = problemRepository;
     }
 
-    @GetMapping(path="/")
-    public @ResponseBody Iterable<Assignment> getAllAssignments()
-    {
-        return assignmentRepository.findAll();
-    }
-
     @GetMapping(path="/{id}")
     public @ResponseBody Assignment getAssignment(@PathVariable("id") Integer id)
     {

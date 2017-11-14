@@ -1,10 +1,13 @@
 package cl.intelliware.smartlab.controllers;
 
+import cl.intelliware.smartlab.models.LoggedUser;
 import cl.intelliware.smartlab.models.User;
 import cl.intelliware.smartlab.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.security.Principal;
 import java.util.HashMap;
 
@@ -40,8 +43,14 @@ public class UserController
     }
 
     @RequestMapping("/logged")
-	public @ResponseBody Principal loggedUserInfo(Principal principal) {
-        return principal;
+	public @ResponseBody HashMap<String, Object> loggedUserInfo(OAuth2Authentication authentication) throws IOException {
+        HashMap<String, Object> userMap = new HashMap<>();
+        userMap.put("principal", authentication.getUserAuthentication().getDetails());
+
+        LoggedUser.setUserDetails(authentication);
+        User user = userRepository.findByMail(LoggedUser.getInstance().geteMail());
+        userMap.put("instance", user);
+        return userMap;
 	}
 }
 
