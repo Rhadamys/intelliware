@@ -37,7 +37,7 @@ public class Assignment {
     private Date deadline;
 
     @Column
-    private Float grade;
+    private Double grade;
 
     @OneToMany(
             mappedBy = "assignment",
@@ -55,6 +55,11 @@ public class Assignment {
         this.deadline = deadline;
         this.problem = problem;
         this.submissions = new HashSet<>();
+        this.grade = 1.0;
+    }
+
+    public boolean isAnswered(){
+        return this.submissions != null;
     }
 
     public long getId() {
@@ -97,11 +102,13 @@ public class Assignment {
         this.deadline = deadline;
     }
 
-    public Float getGrade() {
+    public Double getGrade() {
+        if (grade == null)
+            return 1.0;
         return grade;
     }
 
-    public void setGrade(Float grade) {
+    public void setGrade(Double grade) {
         this.grade = grade;
     }
 

@@ -7,6 +7,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 import java.util.Set;
+import java.util.HashMap;
 
 @Entity
 @Table(name="Users")
@@ -86,6 +87,28 @@ public class User {
         return mail.matches("[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:.[a-zA-Z0-9-]+)*$");
     }
 
+    public HashMap<String,Object> getAssignmentSummary(){
+        HashMap<String,Object> summary = new HashMap<>();
+
+        summary.put("id", this.id);
+        summary.put("name", this.getFullName());
+        summary.put("assigned",this.assignments.size());
+
+        int answered = 0;
+        double mean = 0;
+        for (Assignment assigment :
+                this.assignments) {
+            if(assigment.isAnswered())
+                answered++;
+            mean += assigment.getGrade();
+        }
+
+        summary.put("answered", answered);
+        summary.put("mean", mean/assignments.size());
+
+        return summary;
+    }
+
     // GETTERS AND SETTERS
 
     public long getId() {
@@ -127,6 +150,8 @@ public class User {
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
+
+    public String getFullName(){return this.firstName+" "+this.lastName;}
 
     public Set<Role> getRoles() {
         return roles;
