@@ -17,6 +17,9 @@ public class Section {
     @NotNull
     private String semester;
 
+    @NotNull
+    private String name;
+
     @ManyToMany(mappedBy = "sectionsAttending")
     @JsonIgnore
     private Set<User> students;
@@ -31,6 +34,14 @@ public class Section {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getSemester() {

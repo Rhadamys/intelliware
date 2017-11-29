@@ -32,8 +32,11 @@ INSERT INTO roles_users (user_id, role_id) VALUES (12,1);
 INSERT INTO roles_users (user_id, role_id) VALUES (13,1);
 INSERT INTO roles_users (user_id, role_id) VALUES (14,1);
 
-INSERT INTO sections (semester) VALUES ("2-A1");
-INSERT INTO sections (semester) VALUES ("2-A2");
+INSERT INTO sections (semester, name) VALUES ("1-2017", "A1");
+INSERT INTO sections (semester, name) VALUES ("1-2017", "B1");
+INSERT INTO sections (semester, name) VALUES ("2-2017", "A1");
+INSERT INTO sections (semester, name) VALUES ("2-2017", "B1");
+INSERT INTO sections (semester, name) VALUES ("2-2017", "C1");
 
 INSERT INTO sections_students (student_id, section_id) VALUES (1,1);
 INSERT INTO sections_students (student_id, section_id) VALUES (2,1);
