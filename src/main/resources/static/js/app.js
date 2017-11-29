@@ -34,6 +34,10 @@ app.config(function($routeProvider){
         .when('/tareas/:id/editor', {
             templateUrl: 'js/views/editor.html'
         })
+        .when('/dashboard/sections/:id', {
+            templateUrl: 'js/views/dashboards/sections.html',
+            controller: 'SectionSummaryController'
+        })
         .otherwise({
             redirectTo: '/'
         });

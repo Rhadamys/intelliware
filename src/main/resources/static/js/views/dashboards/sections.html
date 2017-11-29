@@ -1,0 +1,20 @@
+<div class="container" ng-controller="SectionSummaryController">
+    <div class="col-md-12">
+        <div class="panel panel-default" ng-if="section">
+            <div class="panel-body">
+                <div class="section-header">
+                    <h4><b>{{ section.semester }}</b></h4>
+                </div>
+                <div class="section-summary">
+                    <div class="section-student" ng-repeat="student in section.summary">
+                        <p>id: {{ student.id }}</p>
+                        <p>name: {{ student.name }}</p>
+                        <p>mean: {{ student.mean }}</p>
+                        <p>assigned: {{ student.assigned }}</p>
+                        <p>answered: {{ student.answered }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

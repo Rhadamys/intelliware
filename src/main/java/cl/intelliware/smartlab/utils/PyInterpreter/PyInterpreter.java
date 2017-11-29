@@ -36,10 +36,10 @@ public class PyInterpreter {
         try {
             output = future.get(this.timeout, TimeUnit.SECONDS);
         }catch (TimeoutException e){
-            output = "Timeout! Check out your code. There is an infinite loop?";
+            output = "Esto se esta demorando mucho.\n¿El código tendrá algun ciclo infinito?";
         } catch (InterruptedException e) {
             e.printStackTrace();
-            output = "We had a problem, Try again.";
+            output = "El servidor tuvo un problema. Intenta de nuevo.";
         } catch (ExecutionException e) {
             output = e.getCause().toString();
         }
