@@ -3,16 +3,27 @@
         <div class="panel panel-default" ng-if="section">
             <div class="panel-body">
                 <div class="section-header">
-                    <h4><b>{{ section.semester }}</b></h4>
+                    <h4><b>Sección {{ section.name }} - Semestre {{ section.semester }}</b></h4>
                 </div>
                 <div class="section-summary">
-                    <div class="section-student" ng-repeat="student in section.summary">
-                        <p>id: {{ student.id }}</p>
-                        <p>name: {{ student.name }}</p>
-                        <p>mean: {{ student.mean }}</p>
-                        <p>assigned: {{ student.assigned }}</p>
-                        <p>answered: {{ student.answered }}</p>
-                    </div>
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Tareas Asignadas</th>
+                                <th>Tareas Enviadas</th>
+                                <th>Promedio</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="section-student" ng-repeat="student in section.summary">
+                                <td>{{ student.name }}</td>
+                                <td>{{ student.assigned }}</td>
+                                <td>{{ student.answered }}</td>
+                                <td>{{ student.mean }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
